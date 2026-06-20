@@ -1,0 +1,548 @@
+{
+  "last_updated": "2025-01",
+  "data_note": "Data reflects regulatory frameworks as of early 2025. Contribution rates and AUM figures are approximate and should be verified against current regulator publications.",
+  "jurisdictions": [
+    {
+      "country": "Nigeria",
+      "region": "West Africa",
+      "regulator": "National Pension Commission (PenCom)",
+      "regulator_url": "https://pencom.gov.ng",
+      "primary_legislation": "Pension Reform Act 2014",
+      "legislation_year": 2014,
+      "amendments": ["Pension Reform (Amendment) Act 2019"],
+      "system_type": "DC",
+      "system_description": "Contributory Pension Scheme (CPS) — mandatory defined contribution for public and private sector employers with 15 or more employees. Individual Retirement Savings Accounts (RSAs) managed by licensed Pension Fund Administrators.",
+      "mandatory_for": "Organisations with 15+ employees (public and private sector)",
+      "total_contribution_rate_pct": 18.0,
+      "employer_contribution_pct": 10.0,
+      "employee_contribution_pct": 8.0,
+      "portability": "Full — individual RSA follows the member across employers",
+      "vesting": "Immediate upon registration",
+      "retirement_age": 50,
+      "investment_framework": "PenCom Investment Regulation — multi-fund structure (Fund I–IV based on member age)",
+      "offshore_limit_pct": 5.0,
+      "equity_limit_pct": 35.0,
+      "alternative_investments": "Permitted — infrastructure funds, private equity up to 5%",
+      "real_estate_limit_pct": 25.0,
+      "estimated_aum_usd_bn": 27.0,
+      "coverage_rate_pct": 10.0,
+      "total_rsa_holders_mn": 10.0,
+      "annuity_market": "Programmatic withdrawal or life annuity at retirement. 25% lump sum permitted.",
+      "key_strengths": [
+        "Well-established contributory system with strong PenCom oversight",
+        "Multi-fund lifecycle investment structure",
+        "Licensed PFA/PFC separation reduces custodial risk",
+        "Rapidly growing AUM",
+        "Micro Pension Plan for informal sector (2019)"
+      ],
+      "key_challenges": [
+        "Very low coverage — estimated 90% of workforce unregistered",
+        "Informal sector inclusion remains nascent",
+        "State government pension arrears exceed NGN 800 billion",
+        "Small average RSA balances insufficient for retirement income",
+        "Offshore limit of 5% constrains diversification",
+        "Employer remittance delays and non-compliance"
+      ],
+      "recent_reforms": [
+        "Micro Pension Plan launched 2019 targeting informal sector",
+        "New investment regulations expanding alternative asset access",
+        "Enhanced PFA compliance framework"
+      ],
+      "pending_reforms": [
+        "State government compliance enforcement mechanism",
+        "Coverage expansion to employers with fewer than 15 staff",
+        "Potential increase in offshore investment limit",
+        "Enhancement of Micro Pension Plan incentives"
+      ],
+      "comparison_notes": "Africa's largest pension market by number of contributors. Multi-fund structure is best practice. Offshore limit significantly more restrictive than Botswana (50%) or Namibia (45%). State government arrears remain the system's most acute governance failure."
+    },
+    {
+      "country": "South Africa",
+      "region": "Southern Africa",
+      "regulator": "Financial Sector Conduct Authority (FSCA)",
+      "regulator_url": "https://www.fsca.co.za",
+      "primary_legislation": "Pension Funds Act 24 of 1956",
+      "legislation_year": 1956,
+      "amendments": ["Financial Sector Regulation Act 2017 (twin peaks)", "Various Pension Funds Act amendments"],
+      "system_type": "Mixed (DB, DC, Hybrid)",
+      "system_description": "Voluntary occupational pension and provident funds regulated under the Pension Funds Act. Government employees covered by the GEPF (defined benefit). Retirement Annuity Funds for self-employed. Mandatory preservation proposed but not yet enacted.",
+      "mandatory_for": "Not universally mandatory; GEPF mandatory for government employees",
+      "total_contribution_rate_pct": null,
+      "employer_contribution_pct": null,
+      "employee_contribution_pct": null,
+      "portability": "Portability exists but cash-out on resignation remains a significant preservation challenge",
+      "vesting": "Fund-specific",
+      "retirement_age": 55,
+      "investment_framework": "Regulation 28 of the Pension Funds Act — limits on equities (75%), property (25%), offshore (45% + 10% Africa)",
+      "offshore_limit_pct": 45.0,
+      "africa_offshore_limit_pct": 10.0,
+      "equity_limit_pct": 75.0,
+      "alternative_investments": "Hedge funds (10%), private equity, infrastructure permitted",
+      "real_estate_limit_pct": 25.0,
+      "estimated_aum_usd_bn": 200.0,
+      "coverage_rate_pct": 50.0,
+      "total_rsa_holders_mn": null,
+      "annuity_market": "Well-developed — living annuities and guaranteed annuities widely available. Two-thirds rule (annuitization requirement) phased out for provident funds following 2016 reforms.",
+      "key_strengths": [
+        "Africa's most developed pension market",
+        "GEPF is one of the world's largest pension funds (~$80bn)",
+        "Sophisticated regulatory framework under FSCA and Prudential Authority",
+        "Well-developed annuity and insurance market",
+        "Regulation 28 provides balanced investment framework",
+        "Strong actuarial and legal profession"
+      ],
+      "key_challenges": [
+        "Low preservation rates — members cash out on job changes",
+        "High cost structures in some fund types",
+        "Proposed mandatory preservation not yet law",
+        "Retirement income adequacy gap",
+        "GEPF as unfunded liability for government",
+        "Concentration risk in listed equities",
+        "Twin peaks regulatory coordination complexity"
+      ],
+      "recent_reforms": [
+        "Two-pot retirement system enacted (effective September 2024) — allows 1/3 accessible, 2/3 preserved",
+        "Increased offshore limit from 30% to 45%",
+        "Default regulations on annuities, preservation, and investment"
+      ],
+      "pending_reforms": [
+        "National Social Security Fund reform (ongoing political debate)",
+        "NHI and its interaction with medical scheme/pension structures"
+      ],
+      "comparison_notes": "By far Africa's most sophisticated pension market. Two-pot system (2024) is a landmark reform addressing preservation while maintaining accessibility — a model worth studying for other African markets. Offshore limit at 45% is the most liberal in Africa."
+    },
+    {
+      "country": "Kenya",
+      "region": "East Africa",
+      "regulator": "Retirement Benefits Authority (RBA)",
+      "regulator_url": "https://www.rba.go.ke",
+      "primary_legislation": "Retirement Benefits Act (Cap 197)",
+      "legislation_year": 1997,
+      "amendments": ["Retirement Benefits (Amendment) Act 2021"],
+      "system_type": "Mixed (DC occupational + NSSF)",
+      "system_description": "Two-tier system: mandatory NSSF contributions (Tier I + Tier II under reformed Act) and voluntary occupational pension schemes regulated by RBA. NSSF Act 2013 amended contribution rates but faced legal challenges.",
+      "mandatory_for": "NSSF mandatory for employed persons. RBA-regulated schemes are employer-sponsored.",
+      "total_contribution_rate_pct": null,
+      "employer_contribution_pct": null,
+      "employee_contribution_pct": null,
+      "portability": "Occupational scheme portability exists; NSSF portable",
+      "vesting": "Typically 2-3 years for employer contributions in occupational schemes",
+      "retirement_age": 60,
+      "investment_framework": "RBA Investment Guidelines — offshore limit 15%, equity limit varies, alternative investments expanding",
+      "offshore_limit_pct": 15.0,
+      "equity_limit_pct": 70.0,
+      "alternative_investments": "Private equity and infrastructure permitted with limits",
+      "real_estate_limit_pct": 30.0,
+      "estimated_aum_usd_bn": 13.0,
+      "coverage_rate_pct": 20.0,
+      "total_rsa_holders_mn": null,
+      "annuity_market": "Developing — limited annuity products; programmatic withdrawal common",
+      "key_strengths": [
+        "Strong regulatory body (RBA) with active supervision",
+        "Growing umbrella scheme market improving access for SMEs",
+        "NSE-listed companies offering diversification options",
+        "Increasing alternative investment appetite"
+      ],
+      "key_challenges": [
+        "NSSF reform stalled by legal challenges to NSSF Act 2013",
+        "Low coverage in informal sector",
+        "Inadequate benefit levels from NSSF",
+        "Limited annuity market",
+        "Weak preservation culture"
+      ],
+      "recent_reforms": [
+        "RBA new investment guidelines expanding alternative investments (2021)",
+        "Umbrella scheme proliferation improving SME coverage"
+      ],
+      "pending_reforms": [
+        "NSSF Act implementation (Supreme Court ruling pending)",
+        "Coverage expansion to informal sector",
+        "Annuity market development"
+      ],
+      "comparison_notes": "Kenya has East Africa's most developed private pension market. NSSF reform is the key unresolved issue — the 2013 Act that would increase contributions faces constitutional challenges. Umbrella schemes are a positive innovation for SME inclusion."
+    },
+    {
+      "country": "Ghana",
+      "region": "West Africa",
+      "regulator": "National Pensions Regulatory Authority (NPRA)",
+      "regulator_url": "https://www.npra.gov.gh",
+      "primary_legislation": "National Pensions Act 766",
+      "legislation_year": 2008,
+      "amendments": ["National Pensions (Amendment) Act 883 (2014)"],
+      "system_type": "Three-tier mixed system",
+      "system_description": "Three-tier system: Tier 1 = mandatory basic national social security (SSNIT, DB); Tier 2 = mandatory occupational scheme (DC, employer/employee contributions); Tier 3 = voluntary provident fund or personal pension scheme.",
+      "mandatory_for": "All formal sector employees",
+      "tier1_rate_pct": 13.5,
+      "tier1_employer_pct": 13.0,
+      "tier1_employee_pct": 5.5,
+      "tier2_rate_pct": 5.0,
+      "tier2_employee_pct": 5.0,
+      "portability": "Tier 2 fully portable; Tier 1 (SSNIT) tied to contributions history",
+      "vesting": "Tier 2: 3 years",
+      "retirement_age": 60,
+      "investment_framework": "NPRA Investment Regulations — Tier 2 funds managed by licensed trustees",
+      "offshore_limit_pct": 10.0,
+      "estimated_aum_usd_bn": 5.0,
+      "coverage_rate_pct": 15.0,
+      "annuity_market": "Limited; lump sum at retirement common",
+      "key_strengths": [
+        "Well-designed three-tier architecture",
+        "Mandatory Tier 2 provides universal occupational coverage for formal sector",
+        "NPRA active in regulatory development",
+        "Growing licensed trustee industry"
+      ],
+      "key_challenges": [
+        "SSNIT (Tier 1) financial sustainability concerns",
+        "Low actual coverage despite mandatory status",
+        "Economic volatility affecting fund values (cedis depreciation)",
+        "Weak enforcement of contribution remittances",
+        "Investment in government securities limits diversification"
+      ],
+      "recent_reforms": [
+        "Enhanced NPRA enforcement of trustee licensing",
+        "ESG framework for pension investments under development"
+      ],
+      "pending_reforms": [
+        "SSNIT reform to address actuarial sustainability",
+        "Expanded informal sector coverage mechanism",
+        "Review of Tier 2 offshore limits"
+      ],
+      "comparison_notes": "Ghana's three-tier structure is one of Africa's most thoughtfully designed systems. The separation of social security (SSNIT), occupational saving (Tier 2), and voluntary saving (Tier 3) mirrors international best practice. The main vulnerability is SSNIT's financial health."
+    },
+    {
+      "country": "Tanzania",
+      "region": "East Africa",
+      "regulator": "Social Security Regulatory Authority (SSRA)",
+      "regulator_url": "https://www.ssra.go.tz",
+      "primary_legislation": "Social Security (Regulatory Authority) Act 2008",
+      "legislation_year": 2008,
+      "system_type": "Multiple mandatory DB/DC social security funds",
+      "system_description": "Multiple social security funds: NSSF (largest, DB), PSPF (public servants), LAPF (local government), GEPF (government employees), ZSSF (Zanzibar). Recent merger of some funds into PSSSF. Reform ongoing.",
+      "mandatory_for": "Formal sector employees",
+      "total_contribution_rate_pct": 20.0,
+      "employer_contribution_pct": 10.0,
+      "employee_contribution_pct": 10.0,
+      "retirement_age": 60,
+      "investment_framework": "SSRA investment guidelines",
+      "offshore_limit_pct": 0.0,
+      "estimated_aum_usd_bn": 6.0,
+      "coverage_rate_pct": 8.0,
+      "key_challenges": [
+        "Fragmented multi-fund system with overlapping mandates",
+        "Very low informal sector coverage",
+        "DB sustainability concerns for some funds",
+        "Weak investment governance",
+        "No offshore investment permitted"
+      ],
+      "recent_reforms": [
+        "Merger of LAPF and GEPF into PSSSF (public servants)",
+        "SSRA enhanced supervisory framework"
+      ],
+      "comparison_notes": "Tanzania's multi-fund system is being rationalized through mergers. Zero offshore investment limit is among the most restrictive in Africa, constraining diversification and returns."
+    },
+    {
+      "country": "Uganda",
+      "region": "East Africa",
+      "regulator": "Uganda Retirement Benefits Regulatory Authority (URBRA)",
+      "regulator_url": "https://www.urbra.or.ug",
+      "primary_legislation": "Retirement Benefits Sector Liberalisation Act 2011",
+      "legislation_year": 2011,
+      "system_type": "Dominant public fund + emerging private schemes",
+      "system_description": "NSSF Uganda dominates as mandatory social security fund (DB/DC hybrid). URBRA established in 2011 to license and regulate private occupational pension schemes, a relatively new development.",
+      "mandatory_for": "Employees of formal sector",
+      "total_contribution_rate_pct": 15.0,
+      "employer_contribution_pct": 10.0,
+      "employee_contribution_pct": 5.0,
+      "retirement_age": 55,
+      "investment_framework": "URBRA investment guidelines",
+      "offshore_limit_pct": 20.0,
+      "estimated_aum_usd_bn": 4.0,
+      "coverage_rate_pct": 7.0,
+      "key_challenges": [
+        "NSSF dominance limits market development",
+        "Low coverage rate",
+        "NSSF Act reform controversial",
+        "Private scheme market nascent",
+        "Mid-term access allowed under NSSF amendment (governance concern)"
+      ],
+      "recent_reforms": [
+        "NSSF (Amendment) Act 2022 permitting mid-term access for members over 45 years",
+        "URBRA licensing of private pension schemes"
+      ],
+      "comparison_notes": "NSSF Uganda (with ~$4bn AUM) is large relative to economy. The 2022 amendment permitting mid-term withdrawal is controversial — concerns about long-term retirement income adequacy mirror debates in other markets."
+    },
+    {
+      "country": "Botswana",
+      "region": "Southern Africa",
+      "regulator": "Non-Bank Financial Institutions Regulatory Authority (NBFIRA)",
+      "regulator_url": "https://www.nbfira.org.bw",
+      "primary_legislation": "Pension and Provident Funds Act 2022 (replacing CAP 27:03)",
+      "legislation_year": 2022,
+      "system_type": "Voluntary occupational DC",
+      "system_description": "Primarily employer-sponsored occupational schemes (not universally mandatory). Well-established private pension market with high AUM relative to GDP. New Pension and Provident Funds Act enacted 2022.",
+      "mandatory_for": "Not universally mandatory; employer-sponsored schemes for formal sector",
+      "retirement_age": 55,
+      "investment_framework": "NBFIRA investment regulations — high offshore limit",
+      "offshore_limit_pct": 50.0,
+      "estimated_aum_usd_bn": 7.0,
+      "coverage_rate_pct": 45.0,
+      "key_strengths": [
+        "Highest AUM-to-GDP ratio in Africa (~50%)",
+        "Liberal offshore investment limit (50%)",
+        "Sophisticated regulatory framework",
+        "New 2022 legislation modernizes governance requirements"
+      ],
+      "key_challenges": [
+        "Small economy limits scale",
+        "Concentration in government bonds historically",
+        "Limited domestic capital market depth",
+        "Coverage not universal despite high ratio"
+      ],
+      "comparison_notes": "Botswana is often cited as a model for pension development in Africa given its AUM-to-GDP ratio. High offshore limit reflects pragmatic approach to diversification given limited domestic investment universe."
+    },
+    {
+      "country": "Namibia",
+      "region": "Southern Africa",
+      "regulator": "Namibia Financial Institutions Supervisory Authority (NAMFISA)",
+      "regulator_url": "https://www.namfisa.com.na",
+      "primary_legislation": "Pension Funds Act 24 of 1956 (inherited, under review)",
+      "legislation_year": 1956,
+      "system_type": "Voluntary occupational DC/DB",
+      "system_description": "Well-developed occupational pension market inherited from South African framework. NAMFISA regulates. Regulation 29 governs investments. Domestic asset requirement (previously 35%) removed. Financial Institutions and Markets Act (FIMA) being phased in.",
+      "mandatory_for": "Not universally mandatory",
+      "retirement_age": 60,
+      "investment_framework": "Regulation 29 — domestic requirement removed; offshore up to 45%",
+      "offshore_limit_pct": 45.0,
+      "estimated_aum_usd_bn": 15.0,
+      "coverage_rate_pct": 60.0,
+      "key_strengths": [
+        "High AUM relative to GDP",
+        "Established regulatory and legal framework",
+        "Liberal offshore investment limit",
+        "GIPF (Government Institutions Pension Fund) among Africa's largest"
+      ],
+      "key_challenges": [
+        "Outdated primary legislation (1956 Act) though FIMA transition ongoing",
+        "Small domestic capital market",
+        "Concentration of AUM in GIPF"
+      ],
+      "recent_reforms": [
+        "Removal of domestic asset requirement (Regulation 29 amendment)",
+        "FIMA transition introducing modern regulatory framework"
+      ],
+      "comparison_notes": "GIPF is Namibia's dominant pension fund and one of Africa's largest. The removal of the domestic investment requirement is controversial — government wants pension funds to invest locally; funds prefer offshore diversification."
+    },
+    {
+      "country": "Zambia",
+      "region": "Southern Africa",
+      "regulator": "Pensions and Insurance Authority (PIA)",
+      "regulator_url": "https://www.pia.gov.zm",
+      "primary_legislation": "Pension Scheme Regulation Act (PSRA) 1996",
+      "legislation_year": 1996,
+      "system_type": "Occupational DC + NAPSA (mandatory social security)",
+      "system_description": "NAPSA (National Pension Scheme Authority) provides mandatory basic coverage. Occupational schemes regulated by PIA. Pension Scheme Regulation Act under review for modernisation.",
+      "mandatory_for": "NAPSA mandatory for formal sector employees",
+      "total_contribution_rate_pct": 10.0,
+      "employer_contribution_pct": 5.0,
+      "employee_contribution_pct": 5.0,
+      "retirement_age": 55,
+      "investment_framework": "PIA investment guidelines",
+      "offshore_limit_pct": 10.0,
+      "estimated_aum_usd_bn": 2.5,
+      "coverage_rate_pct": 12.0,
+      "key_challenges": [
+        "Outdated primary legislation",
+        "Low contribution rates reducing benefit adequacy",
+        "Currency depreciation eroding real returns",
+        "Limited domestic capital market",
+        "Low coverage in mining sector informal workforce"
+      ],
+      "comparison_notes": "Zambia's pension system punches below its weight given the size of the mining sector. Low mandatory contribution rates mean members accumulate insufficient savings."
+    },
+    {
+      "country": "Rwanda",
+      "region": "East Africa",
+      "regulator": "National Bank of Rwanda (BNR) — oversight; RSSB operates",
+      "regulator_url": "https://www.rssb.rw",
+      "primary_legislation": "Law governing retirement pension scheme in Rwanda",
+      "system_type": "Mandatory DB social security",
+      "system_description": "Rwanda Social Security Board (RSSB) provides mandatory pension, medical, maternity, and occupational hazard coverage. Pension scheme is defined benefit for formal sector. Growing private pension market under development.",
+      "mandatory_for": "Formal sector employees",
+      "total_contribution_rate_pct": 6.0,
+      "employer_contribution_pct": 3.0,
+      "employee_contribution_pct": 3.0,
+      "retirement_age": 60,
+      "investment_framework": "BNR regulations",
+      "offshore_limit_pct": 0.0,
+      "estimated_aum_usd_bn": 1.5,
+      "coverage_rate_pct": 20.0,
+      "key_challenges": [
+        "Very low contribution rates (6% total) for DB system",
+        "No offshore investment",
+        "Actuarial sustainability of DB scheme",
+        "Private pension market underdeveloped"
+      ],
+      "comparison_notes": "Rwanda's 6% contribution rate is very low for a DB system and creates long-term sustainability risk. The government's Vision 2050 targets expanded social protection coverage."
+    },
+    {
+      "country": "Ethiopia",
+      "region": "East Africa",
+      "regulator": "Financial Sector Supervisory Agency (FSSA) — insurance/pensions",
+      "system_type": "Government social security + minimal private sector",
+      "system_description": "Civil servant pension scheme (EPPSSB) and private employees social security (PESSO). Very limited private pension market. Insurance and pension regulator under reform.",
+      "mandatory_for": "Formal sector employees",
+      "estimated_aum_usd_bn": 2.0,
+      "coverage_rate_pct": 5.0,
+      "key_challenges": [
+        "Very low coverage (formal sector only)",
+        "No meaningful private pension market",
+        "Regulatory capacity constraints",
+        "Large informal economy",
+        "Political instability affecting development"
+      ],
+      "comparison_notes": "Ethiopia, as Africa's second most populous country, has enormous untapped pension market potential. The lack of a developed private pension sector is a significant gap given the country's economic size."
+    },
+    {
+      "country": "Zimbabwe",
+      "region": "Southern Africa",
+      "regulator": "Insurance and Pensions Commission (IPEC)",
+      "regulator_url": "https://www.ipec.co.zw",
+      "primary_legislation": "Pension and Provident Funds Act (Chapter 24:09)",
+      "system_type": "Occupational DC/DB — significantly impaired",
+      "system_description": "Once-sophisticated pension market severely damaged by hyperinflation (2007-2009). Dollarization partially restored system. IPEC working on rehabilitation. Currency instability remains an ongoing risk.",
+      "mandatory_for": "Formal sector",
+      "retirement_age": 60,
+      "estimated_aum_usd_bn": 1.5,
+      "coverage_rate_pct": 15.0,
+      "key_challenges": [
+        "Legacy of hyperinflation wiping out member savings",
+        "Ongoing currency instability (ZiG introduction 2024)",
+        "Low confidence in pension system",
+        "IPEC enforcement capacity",
+        "Erosion of DB benefits through currency debasement",
+        "Compliance challenges for employers"
+      ],
+      "recent_reforms": [
+        "Zimbabwe Gold (ZiG) currency introduction (2024)",
+        "IPEC engagement on pension arrears and benefit reconstruction"
+      ],
+      "comparison_notes": "Zimbabwe is the most stark example of currency risk destroying pension savings in Africa. Its experience should inform policy discussions on dollarization, asset allocation, and currency hedging in pension systems across the continent."
+    },
+    {
+      "country": "Côte d'Ivoire",
+      "region": "West Africa",
+      "regulator": "Caisse Nationale de Prévoyance Sociale (CNPS)",
+      "system_type": "Mandatory DB social security",
+      "system_description": "CNPS provides mandatory social security coverage including pensions. Civil servant scheme separate. Part of CIPRES (inter-African social security conference) framework.",
+      "mandatory_for": "Formal sector employees",
+      "total_contribution_rate_pct": 14.0,
+      "estimated_aum_usd_bn": 3.0,
+      "coverage_rate_pct": 10.0,
+      "key_challenges": [
+        "Low coverage of informal sector (largest economy in Francophone West Africa)",
+        "DB scheme actuarial pressures",
+        "Limited private pension market",
+        "CIPRES framework reform needed"
+      ],
+      "comparison_notes": "Largest economy in Francophone West Africa. CIPRES framework creates certain cross-border portability among member states but the overall system needs modernization."
+    },
+    {
+      "country": "Egypt",
+      "region": "North Africa",
+      "regulator": "Financial Regulatory Authority (FRA)",
+      "primary_legislation": "Social Insurance Law",
+      "system_type": "Mandatory DB social security + private occupational",
+      "system_description": "Two-pillar: mandatory national social insurance (NSSF — DB), and private sector occupational schemes regulated by FRA. Large system given Egypt's population (~100m).",
+      "mandatory_for": "Formal sector employees",
+      "estimated_aum_usd_bn": 35.0,
+      "coverage_rate_pct": 40.0,
+      "key_challenges": [
+        "Fiscal pressure on the NSSF (government liability)",
+        "Currency devaluation eroding real returns",
+        "Low coverage of informal sector (~50% of workforce)",
+        "DB system sustainability",
+        "Inflation impact on benefit adequacy"
+      ],
+      "comparison_notes": "Egypt's large population and significant AUM make it one of Africa's largest pension markets by assets. Currency devaluations since 2022 have severely impacted real pension values."
+    },
+    {
+      "country": "Morocco",
+      "region": "North Africa",
+      "regulator": "Autorité de Contrôle des Assurances et de la Prévoyance Sociale (ACAPS)",
+      "system_type": "Multiple mandatory and supplementary schemes",
+      "system_description": "Multiple pension funds: CMR (civil servants), RCAR (semi-public), CNSS (private sector), CIMR (supplementary). Major pension reform underway to rationalize and merge schemes.",
+      "mandatory_for": "Formal sector employees",
+      "estimated_aum_usd_bn": 25.0,
+      "coverage_rate_pct": 35.0,
+      "key_challenges": [
+        "CMR sustainability crisis (deficit accumulating)",
+        "Fragmented multi-fund architecture",
+        "Low informal sector coverage",
+        "Pension reform politically sensitive"
+      ],
+      "recent_reforms": [
+        "Pension reform roadmap adopted — merging schemes into unified system",
+        "Parametric reforms to CMR contribution rates and retirement age"
+      ],
+      "comparison_notes": "Morocco has one of Africa's most sophisticated financial sectors but faces a genuine pension sustainability crisis in the public servant fund (CMR). The reform process is a useful case study for other African nations with DB public servant schemes."
+    },
+    {
+      "country": "Senegal",
+      "region": "West Africa",
+      "regulator": "Direction des Assurances (Ministry of Finance)",
+      "system_type": "Mandatory social security",
+      "system_description": "IPRES (private sector) and CSS (general social security) provide mandatory coverage. IPRES is a dominant institution in Francophone West Africa's pension landscape.",
+      "mandatory_for": "Formal sector employees",
+      "estimated_aum_usd_bn": 2.0,
+      "coverage_rate_pct": 10.0,
+      "key_challenges": [
+        "Low coverage outside formal sector",
+        "IPRES financial sustainability",
+        "Limited domestic capital market for pension investment",
+        "Currency risk (CFA franc peg — some stability but limited monetary flexibility)"
+      ],
+      "comparison_notes": "IPRES is one of the oldest and most established pension institutions in Francophone West Africa. The CFA franc zone creates both monetary stability and constraints on domestic pension policy."
+    }
+  ],
+  "regional_summaries": {
+    "West Africa": {
+      "leaders": ["Nigeria", "Ghana"],
+      "key_themes": [
+        "Low coverage rates despite large populations",
+        "Informal sector exclusion as primary challenge",
+        "Nigeria's contributory system as regional model",
+        "Ghana's three-tier structure as best-practice architecture",
+        "Francophone countries under CIPRES framework needing reform"
+      ]
+    },
+    "East Africa": {
+      "leaders": ["Kenya", "Uganda"],
+      "key_themes": [
+        "Kenya's RBA as strong regional regulatory benchmark",
+        "Dominant public NSSF funds in Uganda and Tanzania",
+        "NSSF reform contestation in Kenya and Uganda",
+        "Low informal sector coverage across region",
+        "EAC integration creating potential for portability discussions"
+      ]
+    },
+    "Southern Africa": {
+      "leaders": ["South Africa", "Namibia", "Botswana"],
+      "key_themes": [
+        "South Africa's two-pot reform as continent's most significant recent change",
+        "High AUM/GDP ratios in Botswana and Namibia",
+        "Liberal offshore investment limits enabling diversification",
+        "Zimbabwe as cautionary tale on currency risk",
+        "SADC region coordination on portability"
+      ]
+    },
+    "North Africa": {
+      "leaders": ["Egypt", "Morocco"],
+      "key_themes": [
+        "Large pension markets but actuarial sustainability concerns",
+        "Currency devaluation risk to member savings",
+        "Morocco's reform process as a case study",
+        "Low informal sector coverage in large economies"
+      ]
+    }
+  }
+}

@@ -1,0 +1,297 @@
+{
+  "sources": [
+    {
+      "id": "worldbank_pensions",
+      "name": "World Bank Pensions",
+      "url": "https://www.worldbank.org/en/topic/socialprotection/brief/pensions",
+      "type": "multilateral",
+      "scan_frequency": "weekly",
+      "priority": "high",
+      "description": "World Bank pension research, policy notes, and country assessments"
+    },
+    {
+      "id": "oecd_pensions",
+      "name": "OECD Pensions",
+      "url": "https://stats.oecd.org/",
+      "type": "multilateral",
+      "scan_frequency": "weekly",
+      "priority": "high",
+      "description": "OECD pension statistics, data, and pension-at-a-glance publications"
+    },
+    {
+      "id": "ilo_social_protection",
+      "name": "ILO Social Protection",
+      "url": "https://www.ilo.org/global/topics/social-security/lang--en/index.htm",
+      "type": "multilateral",
+      "scan_frequency": "weekly",
+      "priority": "high",
+      "description": "ILO social security reports, conventions, and country data"
+    },
+    {
+      "id": "imf_pensions",
+      "name": "IMF Pensions Research",
+      "url": "https://www.elibrary.imf.org/",
+      "type": "multilateral",
+      "scan_frequency": "weekly",
+      "priority": "high",
+      "description": "IMF eLibrary — working papers, fiscal monitors, and country assessments on pensions"
+    },
+    {
+      "id": "worldbank_documents",
+      "name": "World Bank: Pension Documents Africa",
+      "url": "https://documents.worldbank.org/en/publication/documents-reports/documentlist?qterm=pension+africa",
+      "type": "multilateral",
+      "scan_frequency": "weekly",
+      "priority": "high",
+      "description": "World Bank working papers, country assessments, and technical notes on African pension systems"
+    },
+    {
+      "id": "afdb_research",
+      "name": "African Development Bank Research",
+      "url": "https://www.afdb.org/en/documents/publications",
+      "type": "regional_development_bank",
+      "scan_frequency": "weekly",
+      "priority": "high",
+      "description": "AfDB research papers, country reports, and economic outlooks"
+    },
+    {
+      "id": "fsd_africa",
+      "name": "FSD Africa",
+      "url": "https://www.fsdafrica.org/knowledge/",
+      "type": "development_finance",
+      "scan_frequency": "weekly",
+      "priority": "medium",
+      "description": "FSD Africa research on African financial markets including pension funds"
+    },
+    {
+      "id": "pencom_nigeria",
+      "name": "National Pension Commission Nigeria (PenCom)",
+      "url": "https://pencom.gov.ng",
+      "type": "regulator",
+      "country": "Nigeria",
+      "scan_frequency": "weekly",
+      "priority": "high",
+      "description": "PenCom regulations, quarterly reports, guidelines, and circulars"
+    },
+    {
+      "id": "npra_ghana",
+      "name": "National Pensions Regulatory Authority Ghana (NPRA)",
+      "url": "https://www.npra.gov.gh",
+      "type": "regulator",
+      "country": "Ghana",
+      "scan_frequency": "weekly",
+      "priority": "high",
+      "description": "NPRA guidelines, annual reports, and industry statistics"
+    },
+    {
+      "id": "rba_kenya",
+      "name": "Retirement Benefits Authority Kenya (RBA)",
+      "url": "https://www.rba.go.ke",
+      "type": "regulator",
+      "country": "Kenya",
+      "scan_frequency": "weekly",
+      "priority": "high",
+      "description": "RBA regulations, industry data, and policy updates"
+    },
+    {
+      "id": "fsca_south_africa",
+      "name": "Financial Sector Conduct Authority South Africa (FSCA)",
+      "url": "https://www.fsca.co.za/",
+      "type": "regulator",
+      "country": "South Africa",
+      "scan_frequency": "weekly",
+      "priority": "high",
+      "description": "FSCA retirement fund publications, retirement fund statistics, and regulatory notices"
+    },
+    {
+      "id": "urbra_uganda",
+      "name": "Uganda Retirement Benefits Regulatory Authority (URBRA)",
+      "url": "https://www.urbra.or.ug",
+      "type": "regulator",
+      "country": "Uganda",
+      "scan_frequency": "biweekly",
+      "priority": "medium",
+      "description": "URBRA regulations, industry reports, and guidelines"
+    },
+    {
+      "id": "ssra_tanzania",
+      "name": "Social Security Regulatory Authority Tanzania (SSRA)",
+      "url": "https://www.ssra.go.tz",
+      "type": "regulator",
+      "country": "Tanzania",
+      "scan_frequency": "biweekly",
+      "priority": "medium",
+      "description": "SSRA annual reports, regulations, and scheme statistics"
+    },
+    {
+      "id": "nbfira_botswana",
+      "name": "Non-Bank Financial Institutions Regulatory Authority Botswana (NBFIRA)",
+      "url": "https://www.nbfira.org.bw",
+      "type": "regulator",
+      "country": "Botswana",
+      "scan_frequency": "biweekly",
+      "priority": "medium",
+      "description": "NBFIRA pension fund statistics, industry reports, and regulations"
+    },
+    {
+      "id": "namfisa_namibia",
+      "name": "Namibia Financial Institutions Supervisory Authority (NAMFISA)",
+      "url": "https://www.namfisa.com.na",
+      "type": "regulator",
+      "country": "Namibia",
+      "scan_frequency": "biweekly",
+      "priority": "medium",
+      "description": "NAMFISA pension fund industry reports and regulations"
+    },
+    {
+      "id": "pia_zambia",
+      "name": "Pensions and Insurance Authority Zambia (PIA)",
+      "url": "https://www.pia.gov.zm",
+      "type": "regulator",
+      "country": "Zambia",
+      "scan_frequency": "biweekly",
+      "priority": "medium",
+      "description": "PIA annual reports, regulations, and industry statistics"
+    },
+    {
+      "id": "ipec_zimbabwe",
+      "name": "Insurance and Pensions Commission Zimbabwe (IPEC)",
+      "url": "https://www.ipec.co.zw",
+      "type": "regulator",
+      "country": "Zimbabwe",
+      "scan_frequency": "biweekly",
+      "priority": "medium",
+      "description": "IPEC quarterly reports, industry statistics, and circulars"
+    },
+    {
+      "id": "rssb_rwanda",
+      "name": "Rwanda Social Security Board (RSSB)",
+      "url": "https://www.rssb.rw",
+      "type": "regulator",
+      "country": "Rwanda",
+      "scan_frequency": "biweekly",
+      "priority": "medium",
+      "description": "RSSB annual reports and investment information"
+    },
+    {
+      "id": "nssf_kenya",
+      "name": "National Social Security Fund Kenya (NSSF)",
+      "url": "https://www.nssf.or.ke",
+      "type": "national_fund",
+      "country": "Kenya",
+      "scan_frequency": "monthly",
+      "priority": "medium",
+      "description": "NSSF Kenya annual reports and scheme information"
+    },
+    {
+      "id": "nssf_uganda",
+      "name": "National Social Security Fund Uganda (NSSF)",
+      "url": "https://www.nssfug.org",
+      "type": "national_fund",
+      "country": "Uganda",
+      "scan_frequency": "monthly",
+      "priority": "medium",
+      "description": "NSSF Uganda annual reports and investment updates"
+    },
+    {
+      "id": "ssnit_ghana",
+      "name": "Social Security and National Insurance Trust Ghana (SSNIT)",
+      "url": "https://www.ssnit.com.gh",
+      "type": "national_fund",
+      "country": "Ghana",
+      "scan_frequency": "monthly",
+      "priority": "medium",
+      "description": "SSNIT annual reports and benefit information"
+    },
+    {
+      "id": "gepf_south_africa",
+      "name": "Government Employees Pension Fund South Africa (GEPF)",
+      "url": "https://www.gepf.co.za",
+      "type": "national_fund",
+      "country": "South Africa",
+      "scan_frequency": "monthly",
+      "priority": "medium",
+      "description": "GEPF annual reports, investment updates, and ESG reporting"
+    },
+    {
+      "id": "pic_south_africa",
+      "name": "Public Investment Corporation South Africa (PIC)",
+      "url": "https://www.pic.gov.za",
+      "type": "investment_manager",
+      "country": "South Africa",
+      "scan_frequency": "monthly",
+      "priority": "medium",
+      "description": "PIC annual reports, investment performance, and portfolio updates"
+    },
+    {
+      "id": "iops",
+      "name": "International Organisation of Pension Supervisors (IOPS)",
+      "url": "https://www.iopsweb.org",
+      "type": "international_body",
+      "scan_frequency": "monthly",
+      "priority": "medium",
+      "description": "IOPS guidelines, member surveys, and supervisory standards"
+    },
+    {
+      "id": "inprs",
+      "name": "International Network of Pension Regulators and Supervisors (INPRS)",
+      "url": "https://www.inprs.org",
+      "type": "international_body",
+      "scan_frequency": "monthly",
+      "priority": "low",
+      "description": "INPRS research and country profiles"
+    },
+    {
+      "id": "cfa_institute",
+      "name": "CFA Institute Research",
+      "url": "https://www.cfainstitute.org/research/industry",
+      "type": "professional_body",
+      "scan_frequency": "monthly",
+      "priority": "low",
+      "description": "CFA Institute research on investment management and pension governance"
+    },
+    {
+      "id": "ifc_africa",
+      "name": "IFC Africa Finance",
+      "url": "https://www.ifc.org/en/where-we-work/africa",
+      "type": "development_finance",
+      "scan_frequency": "monthly",
+      "priority": "medium",
+      "description": "IFC publications on financial sector development in Africa"
+    },
+    {
+      "id": "willis_towers_watson",
+      "name": "WTW Global Pension Assets Study",
+      "url": "https://www.wtwco.com/en-US/Insights/practices/retirement",
+      "type": "consulting",
+      "scan_frequency": "annual",
+      "priority": "medium",
+      "description": "Annual global pension assets study covering major pension markets"
+    },
+    {
+      "id": "mercer_mmi",
+      "name": "Mercer CFA Institute Global Pension Index",
+      "url": "https://www.mercer.com/en-us/solutions/investments/",
+      "type": "consulting",
+      "scan_frequency": "annual",
+      "priority": "medium",
+      "description": "Annual global pension index ranking pension systems on adequacy, sustainability, and integrity"
+    }
+  ],
+  "document_types": [
+    "research_paper",
+    "regulation",
+    "annual_report",
+    "policy_brief",
+    "news_article",
+    "consultation_paper",
+    "draft_legislation",
+    "actuarial_report",
+    "market_commentary",
+    "investment_guideline",
+    "speech",
+    "press_release",
+    "data_release",
+    "comparative_study"
+  ]
+}

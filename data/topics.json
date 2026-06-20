@@ -1,0 +1,164 @@
+{
+  "topics": [
+    {
+      "id": "coverage",
+      "label": "Coverage and Inclusion",
+      "subtopics": [
+        "Formal sector coverage",
+        "Informal sector inclusion",
+        "Micro-pension schemes",
+        "Self-employed workers",
+        "Agricultural workers",
+        "Coverage expansion strategies",
+        "Voluntary enrolment"
+      ]
+    },
+    {
+      "id": "governance",
+      "label": "Governance and Trustee Capacity",
+      "subtopics": [
+        "Trustee duties and responsibilities",
+        "Board composition and independence",
+        "Trustee training and certification",
+        "Conflict of interest management",
+        "Fund administration standards",
+        "Fiduciary duty",
+        "Corporate governance in pension funds"
+      ]
+    },
+    {
+      "id": "investment",
+      "label": "Investment and Asset Allocation",
+      "subtopics": [
+        "Investment policy statements",
+        "Asset allocation frameworks",
+        "Offshore diversification",
+        "Alternative investments",
+        "Private equity and venture capital",
+        "Infrastructure investment",
+        "Real estate investment",
+        "ESG and responsible investment",
+        "Currency risk management",
+        "Portfolio concentration risk",
+        "Liquidity management"
+      ]
+    },
+    {
+      "id": "regulation",
+      "label": "Regulation and Compliance",
+      "subtopics": [
+        "Pension legislation",
+        "Regulatory frameworks",
+        "Investment restrictions and limits",
+        "Compliance enforcement",
+        "Supervisory capacity",
+        "Risk-based supervision",
+        "Cross-border regulation",
+        "Regulatory reforms"
+      ]
+    },
+    {
+      "id": "benefits",
+      "label": "Benefits and Member Protection",
+      "subtopics": [
+        "Portability of pension rights",
+        "Benefit adequacy",
+        "Vesting rules",
+        "Early withdrawal provisions",
+        "Survivor and disability benefits",
+        "Nomination of beneficiaries",
+        "Dispute resolution",
+        "Member communication and education"
+      ]
+    },
+    {
+      "id": "actuarial",
+      "label": "Actuarial and Longevity Risk",
+      "subtopics": [
+        "Actuarial valuations",
+        "Funding levels and deficits",
+        "Longevity risk management",
+        "Annuitization",
+        "Defined benefit sustainability",
+        "Mortality assumptions",
+        "Life expectancy trends"
+      ]
+    },
+    {
+      "id": "infrastructure",
+      "label": "Infrastructure and Development Finance",
+      "subtopics": [
+        "Pension capital for infrastructure",
+        "PPP models",
+        "Development finance",
+        "Local capital market development",
+        "Blended finance",
+        "Green and climate finance",
+        "National development funds"
+      ]
+    },
+    {
+      "id": "transparency",
+      "label": "Disclosure and Transparency",
+      "subtopics": [
+        "Annual reporting standards",
+        "Fee disclosure",
+        "Investment performance reporting",
+        "Member statements",
+        "Regulatory reporting",
+        "Data quality and availability",
+        "Public accountability"
+      ]
+    },
+    {
+      "id": "reform",
+      "label": "Pension Reform",
+      "subtopics": [
+        "System design and architecture",
+        "Transition from DB to DC",
+        "NDC schemes",
+        "Multi-pillar systems",
+        "Parametric reforms",
+        "Political economy of reform",
+        "International best practices"
+      ]
+    },
+    {
+      "id": "market_data",
+      "label": "Market Data and Statistics",
+      "subtopics": [
+        "Assets under management",
+        "Contribution volumes",
+        "Membership statistics",
+        "Fund performance benchmarks",
+        "Investment returns",
+        "Industry trends",
+        "Comparative country data"
+      ]
+    },
+    {
+      "id": "annuitization",
+      "label": "Annuitization and Decumulation",
+      "subtopics": [
+        "Annuity markets",
+        "Life annuities",
+        "Programmatic withdrawal",
+        "Phased retirement",
+        "Retirement income products",
+        "Longevity pooling"
+      ]
+    },
+    {
+      "id": "offshore",
+      "label": "Offshore Investment and Diversification",
+      "subtopics": [
+        "Offshore investment limits",
+        "Foreign currency exposure",
+        "Global asset allocation",
+        "Domicile and custodianship",
+        "Cross-listing",
+        "Capital flight concerns"
+      ]
+    }
+  ]
+}

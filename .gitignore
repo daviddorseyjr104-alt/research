@@ -1,0 +1,32 @@
+# Environment — never commit API keys
+.env
+.env.*
+
+# Database (Railway uses ephemeral storage; use Railway volumes for persistence)
+*.db
+*.db-wal
+*.db-shm
+data/apw.db
+
+# Generated outputs (rebuilt at runtime)
+outputs/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+dist/
+build/
+.eggs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/settings.json
+*.swp

@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Africa Pension Watch — Research Intelligence</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  * { font-family: 'Inter', system-ui, sans-serif; box-sizing: border-box; }
+  :root {
+    --bg: #080d1a;
+    --surface: #0e1528;
+    --surface2: #141d30;
+    --border: #1e2d47;
+    --border2: #243552;
+    --gold: #c9a84c;
+    --gold-light: #e2c47a;
+    --gold-dim: #c9a84c22;
+    --text: #dde4f0;
+    --text2: #8fa0bc;
+    --text3: #4e6080;
+    --green: #22c55e;
+    --red: #ef4444;
+    --blue: #3b82f6;
+  }
+  body { background: var(--bg); color: var(--text); }
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+  .gold { color: var(--gold); }
+
+  /* ── Sidebar ──────────────────────────────────────────────────────────── */
+  #sidebar { width: 230px; min-width: 230px; background: var(--surface); border-right: 1px solid var(--border); }
+  .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 14px; border-radius: 8px; cursor: pointer; color: var(--text2); font-size: 13.5px; font-weight: 500; transition: all .15s; margin: 1px 8px; }
+  .nav-item:hover { background: var(--surface2); color: var(--text); }
+  .nav-item.active { background: var(--gold-dim); color: var(--gold); border: 1px solid #c9a84c33; }
+  .nav-icon { width: 18px; text-align: center; font-size: 15px; }
+
+  /* ── Sessions panel ───────────────────────────────────────────────────── */
+  #sessions-panel { width: 190px; min-width: 190px; background: var(--bg); border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
+  .session-item { padding: 7px 10px; cursor: pointer; border-radius: 7px; margin: 1px 5px; transition: all .13s; position: relative; }
+  .session-item:hover { background: var(--surface); }
+  .session-item.active { background: var(--gold-dim); }
+  .session-name { font-size: .74rem; color: var(--text); font-weight: 500; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; line-height: 1.3; padding-right: 18px; }
+  .session-item.active .session-name { color: var(--gold); }
+  .session-meta { font-size: .68rem; color: var(--text3); margin-top: 2px; }
+  .session-del { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); opacity: 0; font-size: 10px; color: var(--text3); background: var(--surface2); border: 1px solid var(--border); border-radius: 3px; padding: 1px 4px; cursor: pointer; transition: opacity .12s; line-height: 1.4; }
+  .session-item:hover .session-del { opacity: 1; }
+  .session-del:hover { color: var(--red); border-color: #ef444466; }
+
+  /* ── Chat bubbles ────────────────────────────────────────────────────── */
+  .msg-wrap { padding: 16px 0; }
+  .msg-user .bubble { background: var(--surface2); border: 1px solid var(--border2); margin-left: auto; max-width: 700px; }
+  .msg-agent .bubble { background: var(--surface); border: 1px solid var(--border); max-width: 760px; }
+  .bubble { border-radius: 14px; padding: 16px 20px; }
+
+  /* ── Prose ───────────────────────────────────────────────────────────── */
+  .prose h1, .prose h2, .prose h3, .prose h4 { color: var(--text); font-weight: 600; margin: 1em 0 .4em; }
+  .prose h1 { font-size: 1.15rem; } .prose h2 { font-size: 1.05rem; } .prose h3 { font-size: .95rem; }
+  .prose p { color: var(--text2); line-height: 1.7; margin-bottom: .65rem; font-size: .875rem; }
+  .prose ul, .prose ol { color: var(--text2); padding-left: 1.3rem; margin-bottom: .7rem; }
+  .prose li { margin-bottom: .3rem; font-size: .875rem; line-height: 1.6; }
+  .prose strong { color: var(--text); font-weight: 600; }
+  .prose em { color: var(--gold-light); font-style: italic; }
+  .prose code { background: #0a1220; color: #7dd3fc; padding: 2px 6px; border-radius: 4px; font-size: .8rem; font-family: 'Consolas', monospace; }
+  .prose pre { background: #0a1220; border: 1px solid var(--border); border-radius: 8px; padding: 14px; overflow-x: auto; margin: .75rem 0; }
+  .prose pre code { background: none; padding: 0; }
+  .prose table { width: 100%; border-collapse: collapse; font-size: .82rem; margin: .75rem 0; }
+  .prose th { background: var(--surface2); color: var(--text); padding: 8px 12px; text-align: left; border: 1px solid var(--border2); font-weight: 600; }
+  .prose td { border: 1px solid var(--border); color: var(--text2); padding: 6px 12px; }
+  .prose tr:nth-child(even) td { background: #0e1528; }
+  .prose blockquote { border-left: 3px solid var(--gold); padding-left: 14px; margin: .75rem 0; color: var(--text2); font-style: italic; }
+  .prose a { color: var(--gold); text-decoration: underline; }
+  .prose hr { border-color: var(--border); margin: 1rem 0; }
+
+  /* ── Streaming status ────────────────────────────────────────────────── */
+  .stream-status { display: flex; align-items: center; gap: 7px; font-size: .74rem; color: var(--text3); margin-bottom: 8px; min-height: 20px; }
+
+  /* ── Form elements ───────────────────────────────────────────────────── */
+  .input { background: var(--surface2); border: 1px solid var(--border2); border-radius: 10px; padding: 10px 14px; color: var(--text); font-size: .875rem; width: 100%; transition: border-color .15s; outline: none; }
+  .input:focus { border-color: var(--gold); }
+  .input::placeholder { color: var(--text3); }
+  textarea.input { resize: none; }
+  select.input { cursor: pointer; }
+
+  /* ── Buttons ─────────────────────────────────────────────────────────── */
+  .btn-gold { background: var(--gold); color: #080d1a; font-weight: 600; border-radius: 9px; padding: 9px 18px; font-size: .875rem; cursor: pointer; transition: all .15s; border: none; }
+  .btn-gold:hover { background: var(--gold-light); }
+  .btn-gold:disabled { opacity: .5; cursor: not-allowed; }
+  .btn-ghost { background: transparent; border: 1px solid var(--border2); color: var(--text2); border-radius: 8px; padding: 7px 14px; font-size: .8rem; cursor: pointer; transition: all .15s; }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+  .btn-ghost:disabled { opacity: .4; cursor: not-allowed; }
+
+  /* ── Cards ───────────────────────────────────────────────────────────── */
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+  .stat-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; }
+
+  /* ── Badges ──────────────────────────────────────────────────────────── */
+  .badge { display: inline-flex; align-items: center; padding: 2px 9px; border-radius: 999px; font-size: .7rem; font-weight: 600; letter-spacing: .02em; }
+  .badge-gold { background: var(--gold-dim); color: var(--gold); border: 1px solid #c9a84c33; }
+  .badge-blue { background: #1d3461; color: #93c5fd; }
+  .badge-green { background: #14332a; color: #4ade80; }
+  .badge-red { background: #2d1515; color: #f87171; }
+  .badge-gray { background: var(--surface2); color: var(--text2); border: 1px solid var(--border); }
+
+  /* ── Chips ───────────────────────────────────────────────────────────── */
+  .chip { display: inline-flex; align-items: center; gap: 6px; padding: 6px 13px; background: var(--surface2); border: 1px solid var(--border2); border-radius: 999px; font-size: .78rem; color: var(--text2); cursor: pointer; transition: all .15s; white-space: nowrap; }
+  .chip:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+
+  /* ── Spinner ──────────────────────────────────────────────────────────── */
+  .spin { display: inline-block; width: 16px; height: 16px; border: 2px solid var(--border2); border-top-color: var(--gold); border-radius: 50%; animation: spin .7s linear infinite; flex-shrink: 0; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Toast ───────────────────────────────────────────────────────────── */
+  #toast { position: fixed; bottom: 24px; right: 24px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+  .toast-msg { background: var(--surface); border: 1px solid var(--border2); border-radius: 10px; padding: 12px 18px; font-size: .83rem; color: var(--text); box-shadow: 0 8px 32px #00000066; animation: slideIn .2s ease; max-width: 320px; }
+  .toast-msg.success { border-color: #22c55e44; }
+  .toast-msg.error { border-color: #ef444444; }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ── Data table ──────────────────────────────────────────────────────── */
+  .data-table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+  .data-table th { background: var(--surface2); color: var(--text2); padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border2); font-weight: 600; font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; cursor: pointer; user-select: none; }
+  .data-table th:hover { color: var(--gold); }
+  .data-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text2); }
+  .data-table tr:hover td { background: var(--surface2); }
+  .data-table tr { cursor: pointer; }
+
+  /* ── Detail panel ────────────────────────────────────────────────────── */
+  #detail-panel { position: fixed; right: 0; top: 0; height: 100vh; width: 460px; background: var(--surface); border-left: 1px solid var(--border2); z-index: 100; overflow-y: auto; transform: translateX(100%); transition: transform .25s ease; }
+  #detail-panel.open { transform: translateX(0); }
+
+  /* ── Preview modal ───────────────────────────────────────────────────── */
+  #preview-modal { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,.7); }
+  #preview-modal.open { display: flex; }
+  #preview-box { background: var(--surface); border: 1px solid var(--border2); border-radius: 14px; width: min(860px, 95vw); max-height: 88vh; display: flex; flex-direction: column; box-shadow: 0 24px 64px #000000aa; }
+  #preview-body { overflow-y: auto; padding: 28px 32px; flex: 1; }
+
+  /* ── Progress bar ────────────────────────────────────────────────────── */
+  .progress-bar { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--gold); border-radius: 2px; }
+  .progress-fill.indeterminate { animation: progress-ind 1.8s ease infinite; }
+  @keyframes progress-ind { 0% { width:0%;margin-left:0 } 50% { width:60%;margin-left:20% } 100% { width:0%;margin-left:100% } }
+</style>
+</head>
+<body class="h-screen flex overflow-hidden">
+
+<!-- ══ SIDEBAR ══════════════════════════════════════════════════════════════ -->
+<aside id="sidebar" class="flex flex-col h-full overflow-hidden">
+  <div class="px-5 py-5 border-b" style="border-color:var(--border)">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-sm" style="background:var(--gold);color:#080d1a">APW</div>
+      <div>
+        <div class="font-semibold text-sm" style="color:var(--text)">Africa Pension Watch</div>
+        <div class="text-xs" style="color:var(--text3)">Research Intelligence</div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="flex-1 py-3 overflow-y-auto">
+    <div class="px-4 mb-1 text-xs font-semibold uppercase tracking-widest" style="color:var(--text3)">Workspace</div>
+    <div class="nav-item active" id="nav-chat" onclick="nav('chat')"><span class="nav-icon">💬</span>Research Chat</div>
+    <div class="nav-item" id="nav-generate" onclick="nav('generate')"><span class="nav-icon">✍️</span>Generate</div>
+    <div class="nav-item" id="nav-kb" onclick="nav('kb')"><span class="nav-icon">📚</span>Knowledge Base</div>
+    <div class="mt-3 mb-1 px-4 text-xs font-semibold uppercase tracking-widest" style="color:var(--text3)">Data</div>
+    <div class="nav-item" id="nav-jurisdictions" onclick="nav('jurisdictions')"><span class="nav-icon">🌍</span>Jurisdictions</div>
+    <div class="nav-item" id="nav-sources" onclick="nav('sources')"><span class="nav-icon">📡</span>Sources</div>
+    <div class="nav-item" id="nav-outputs" onclick="nav('outputs')"><span class="nav-icon">📄</span>Outputs</div>
+  </nav>
+
+  <div class="px-4 py-4 border-t" style="border-color:var(--border)">
+    <div class="text-xs mb-2 font-semibold uppercase tracking-wide" style="color:var(--text3)">Services</div>
+    <div class="flex items-center justify-between mb-1">
+      <span class="text-xs" style="color:var(--text2)">Claude AI</span>
+      <span id="st-anthropic" class="badge badge-gray text-xs">—</span>
+    </div>
+    <div class="flex items-center justify-between mb-3">
+      <span class="text-xs" style="color:var(--text2)">Web Search</span>
+      <span id="st-tavily" class="badge badge-gray text-xs">—</span>
+    </div>
+    <div class="text-xs mb-1 font-semibold uppercase tracking-wide" style="color:var(--text3)">Knowledge Base</div>
+    <div class="flex items-center justify-between mb-1">
+      <span class="text-xs" style="color:var(--text2)">Documents</span>
+      <span class="text-xs font-semibold gold" id="sb-docs">—</span>
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="text-xs" style="color:var(--text3)" id="sb-scan">Last scan: never</span>
+    </div>
+  </div>
+</aside>
+
+<!-- ══ MAIN ══════════════════════════════════════════════════════════════════ -->
+<main class="flex-1 flex flex-col overflow-hidden">
+
+  <!-- ── CHAT ──────────────────────────────────────────────────────────────── -->
+  <section id="pane-chat" class="flex h-full overflow-hidden">
+
+    <!-- Sessions panel -->
+    <div id="sessions-panel">
+      <div class="px-3 py-2.5 border-b flex-shrink-0" style="border-color:var(--border)">
+        <button onclick="newChat()" class="btn-ghost w-full text-xs py-1.5 text-center" style="border-radius:7px;font-size:.78rem">+ New Chat</button>
+      </div>
+      <div id="sessions-list" class="flex-1 overflow-y-auto py-1.5"></div>
+    </div>
+
+    <!-- Chat area -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+
+      <!-- Topbar -->
+      <div class="flex items-center justify-between px-5 py-3 border-b flex-shrink-0" style="border-color:var(--border);background:var(--surface)">
+        <div class="flex items-center gap-2 min-w-0 flex-1">
+          <span id="chat-session-name" class="font-semibold text-sm truncate" style="color:var(--text)">Research Chat</span>
+          <button id="rename-btn" onclick="startRename()" class="hidden btn-ghost text-xs px-2 py-0.5" style="font-size:.7rem;flex-shrink:0">✎ Rename</button>
+        </div>
+        <div class="flex items-center gap-2 flex-shrink-0 ml-3">
+          <span class="text-xs" style="color:var(--text3)" id="chat-model-label"></span>
+          <button id="delete-btn" onclick="deleteCurrentSession()" class="hidden btn-ghost text-xs px-3 py-1" style="color:#ef4444;border-color:#ef444444">Delete</button>
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div id="chat-scroll" class="flex-1 overflow-y-auto px-5 py-4" style="scroll-behavior:smooth">
+        <div id="chat-messages"></div>
+      </div>
+
+      <!-- Input -->
+      <div class="flex-shrink-0 px-5 pb-4 pt-2" style="background:var(--bg)">
+        <div class="flex gap-2.5">
+          <div class="flex-1">
+            <textarea id="chat-input" class="input w-full" rows="2"
+              placeholder="Ask about pension regulations, request a policy brief, compare jurisdictions…"
+              onkeydown="chatKey(event)" oninput="autoResize(this)"></textarea>
+          </div>
+          <div class="flex flex-col justify-end">
+            <button onclick="sendChat()" id="send-btn" class="btn-gold px-5">Send</button>
+          </div>
+        </div>
+        <p class="text-xs mt-1.5" style="color:var(--text3)">Enter ↵ to send · Shift+Enter for new line · Streams live with web search + knowledge base</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GENERATE ──────────────────────────────────────────────────────────── -->
+  <section id="pane-generate" class="hidden h-full overflow-y-auto">
+    <div class="px-6 py-4 border-b flex-shrink-0" style="border-color:var(--border);background:var(--surface)">
+      <span class="font-semibold text-sm" style="color:var(--text)">Generate Research Output</span>
+      <span class="text-xs ml-3" style="color:var(--text3)">Policy briefs, articles, advocacy positions, interview guides & more</span>
+    </div>
+    <div class="max-w-3xl mx-auto p-6">
+      <div class="card mb-5">
+        <div class="grid grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wide mb-1.5" style="color:var(--text2)">Output Type</label>
+            <select id="gen-type" class="input"></select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold uppercase tracking-wide mb-1.5" style="color:var(--text2)">Countries (comma-separated or leave blank)</label>
+            <input id="gen-countries" type="text" placeholder="e.g. Nigeria, Ghana, Kenya" class="input">
+          </div>
+        </div>
+        <div class="mb-4">
+          <label class="block text-xs font-semibold uppercase tracking-wide mb-1.5" style="color:var(--text2)">Topic / Research Question</label>
+          <input id="gen-topic" type="text" placeholder="e.g. Strengthening trustee governance standards across East Africa" class="input">
+        </div>
+        <div class="mb-4">
+          <label class="block text-xs font-semibold uppercase tracking-wide mb-1.5" style="color:var(--text2)">Target Audience</label>
+          <input id="gen-audience" type="text" value="pension policymakers, regulators, and industry practitioners" class="input">
+        </div>
+        <div class="mb-4">
+          <label class="block text-xs font-semibold uppercase tracking-wide mb-1.5" style="color:var(--text2)">Additional Instructions <span style="color:var(--text3);font-weight:400;text-transform:none">(optional)</span></label>
+          <textarea id="gen-context" rows="2" placeholder="Specific angles, focus areas, tone guidance, or stakeholder context…" class="input"></textarea>
+        </div>
+        <div id="gen-progress" class="hidden mb-3">
+          <div class="progress-bar"><div class="progress-fill indeterminate"></div></div>
+          <p id="gen-progress-label" class="text-xs mt-1.5" style="color:var(--text3)">Connecting to Claude…</p>
+        </div>
+        <div class="flex items-center justify-between">
+          <label class="flex items-center gap-2.5 cursor-pointer">
+            <input type="checkbox" id="gen-deep" class="w-4 h-4 rounded" style="accent-color:var(--gold)">
+            <span class="text-sm" style="color:var(--text2)">Use Claude Opus <span style="color:var(--text3);font-size:.78rem">(deeper analysis, ~60s)</span></span>
+          </label>
+          <button onclick="generateOutput()" id="gen-btn" class="btn-gold">Generate Output</button>
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <p class="text-xs font-semibold uppercase tracking-wide mb-2" style="color:var(--text3)">Quick Generate</p>
+        <div class="flex flex-wrap gap-2">
+          <div class="chip" onclick="quickGen('policy_brief','Expanding informal sector pension coverage in West Africa',['Nigeria','Ghana'])">📋 Informal Sector Coverage</div>
+          <div class="chip" onclick="quickGen('article','Why African pension funds must increase offshore diversification')">✍️ Offshore Diversification</div>
+          <div class="chip" onclick="quickGen('advocacy_position','Mandatory preservation of pension savings at job change')">📣 Preservation Rules</div>
+          <div class="chip" onclick="quickGen('comparative_report','Pension investment regulations',['Nigeria','Kenya','South Africa','Ghana','Botswana'])">🌍 Compare: Investment Rules</div>
+          <div class="chip" onclick="quickGen('article_ideas','African pension reform 2025')">💡 Article Ideas</div>
+          <div class="chip" onclick="quickGen('interview_guide','pension fund trustees in Sub-Saharan Africa')">🎙️ Trustee Interview Guide</div>
+        </div>
+      </div>
+
+      <div id="gen-result" class="hidden">
+        <div class="flex items-center justify-between mb-3">
+          <h3 id="gen-title" class="font-semibold text-sm" style="color:var(--text)"></h3>
+          <div class="flex gap-2 items-center">
+            <span id="gen-model-badge" class="badge badge-gray"></span>
+            <button onclick="copyOutput()" class="btn-ghost text-xs">Copy</button>
+            <button onclick="downloadOutput()" class="btn-ghost text-xs gold">↓ .md</button>
+          </div>
+        </div>
+        <div class="card max-h-[60vh] overflow-y-auto">
+          <div id="gen-content" class="prose text-sm"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── KNOWLEDGE BASE ────────────────────────────────────────────────────── -->
+  <section id="pane-kb" class="hidden h-full flex flex-col">
+    <div class="px-6 py-3 border-b flex-shrink-0 flex items-center justify-between" style="border-color:var(--border);background:var(--surface)">
+      <span class="font-semibold text-sm" style="color:var(--text)">Knowledge Base</span>
+      <span class="text-xs" style="color:var(--text3)" id="kb-total-label"></span>
+    </div>
+    <div class="flex-1 overflow-y-auto p-6">
+      <div class="grid grid-cols-3 gap-3 mb-6" id="kb-stats-row"></div>
+      <div class="grid grid-cols-2 gap-6 mb-6">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wide mb-2" style="color:var(--text2)">Search Documents</p>
+          <div class="flex gap-2 mb-3">
+            <input id="kb-q" type="text" placeholder="Search the knowledge base…" class="input flex-1"
+              onkeydown="if(event.key==='Enter') searchKB()">
+            <button onclick="searchKB()" class="btn-gold px-4">Search</button>
+          </div>
+          <div id="kb-results" class="space-y-2 max-h-72 overflow-y-auto"></div>
+        </div>
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-wide mb-2" style="color:var(--text2)">Ingest a URL</p>
+          <input id="ingest-url" type="url" placeholder="https://…" class="input mb-2">
+          <div class="flex gap-2 mb-2">
+            <input id="ingest-jur" type="text" placeholder="Country (optional)" class="input flex-1">
+            <button onclick="ingestURL()" class="btn-ghost px-4">Ingest</button>
+          </div>
+          <div id="ingest-msg" class="text-xs mt-1" style="color:var(--text2)"></div>
+        </div>
+      </div>
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-wide mb-3" style="color:var(--text2)">Recent Documents</p>
+        <div id="recent-docs" class="space-y-1.5"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── JURISDICTIONS ─────────────────────────────────────────────────────── -->
+  <section id="pane-jurisdictions" class="hidden h-full flex flex-col">
+    <div class="px-6 py-3 border-b flex-shrink-0 flex items-center justify-between" style="border-color:var(--border);background:var(--surface)">
+      <div>
+        <span class="font-semibold text-sm" style="color:var(--text)">Jurisdictions</span>
+        <span class="text-xs ml-3" style="color:var(--text3)">16 African pension system profiles</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <input id="jur-search" type="text" placeholder="Filter…" class="input text-xs py-1.5 px-3 w-36" oninput="filterJurisdictions()">
+        <select id="region-filter" onchange="loadJurisdictions()" class="input text-xs py-1.5 px-3 w-40">
+          <option value="">All Regions</option>
+          <option value="West Africa">West Africa</option>
+          <option value="East Africa">East Africa</option>
+          <option value="Southern Africa">Southern Africa</option>
+          <option value="North Africa">North Africa</option>
+        </select>
+      </div>
+    </div>
+    <div class="flex-1 overflow-y-auto">
+      <table class="data-table w-full">
+        <thead>
+          <tr>
+            <th onclick="sortJur('country')">Country ↕</th>
+            <th onclick="sortJur('region')">Region ↕</th>
+            <th onclick="sortJur('system_type')">System</th>
+            <th onclick="sortJur('estimated_aum_usd_bn')" class="text-right">AUM $bn ↕</th>
+            <th onclick="sortJur('coverage_rate_pct')" class="text-right">Coverage ↕</th>
+            <th onclick="sortJur('offshore_limit_pct')" class="text-right">Offshore % ↕</th>
+            <th onclick="sortJur('legislation_year')" class="text-right">Law Year ↕</th>
+          </tr>
+        </thead>
+        <tbody id="jur-tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── SOURCES ───────────────────────────────────────────────────────────── -->
+  <section id="pane-sources" class="hidden h-full flex flex-col">
+    <div class="px-6 py-3 border-b flex-shrink-0 flex items-center justify-between" style="border-color:var(--border);background:var(--surface)">
+      <div>
+        <span class="font-semibold text-sm" style="color:var(--text)">Research Sources</span>
+        <span class="text-xs ml-3" style="color:var(--text3)">28 curated sources — regulators, multilaterals, national funds</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span id="scan-badge" class="text-xs" style="color:var(--text3)"></span>
+        <button onclick="triggerScan('','')" id="scan-all-btn" class="btn-gold text-xs px-4 py-2">Scan All Sources</button>
+        <button onclick="triggerScan('','high')" id="scan-high-btn" class="btn-ghost text-xs px-3 py-1.5">High Priority Only</button>
+      </div>
+    </div>
+    <div id="scan-progress" class="hidden mx-6 mt-3">
+      <div class="progress-bar"><div id="scan-progress-fill" class="progress-fill" style="animation:none;width:0%;transition:width .4s ease"></div></div>
+      <p id="scan-progress-label" class="text-xs mt-1" style="color:var(--text3)">Starting scan…</p>
+    </div>
+    <div class="flex-1 overflow-y-auto p-6" id="sources-list"></div>
+  </section>
+
+  <!-- ── OUTPUTS ───────────────────────────────────────────────────────────── -->
+  <section id="pane-outputs" class="hidden h-full flex flex-col">
+    <div class="px-6 py-3 border-b flex-shrink-0" style="border-color:var(--border);background:var(--surface)">
+      <span class="font-semibold text-sm" style="color:var(--text)">Generated Outputs</span>
+      <span class="text-xs ml-3" style="color:var(--text3)">All policy briefs, articles, and reports created by the agent</span>
+    </div>
+    <div class="flex-1 overflow-y-auto p-6" id="outputs-list"></div>
+  </section>
+
+</main>
+
+<!-- ══ DETAIL PANEL ════════════════════════════════════════════════════════ -->
+<div id="detail-panel">
+  <div class="flex items-center justify-between px-5 py-4 border-b sticky top-0" style="border-color:var(--border);background:var(--surface);z-index:10">
+    <span class="font-semibold text-sm" id="dp-title" style="color:var(--text)">Detail</span>
+    <button onclick="closeDetail()" class="btn-ghost text-xs px-3 py-1">✕ Close</button>
+  </div>
+  <div id="dp-content" class="p-5"></div>
+</div>
+<div id="detail-overlay" class="hidden fixed inset-0 bg-black/40" style="z-index:99" onclick="closeDetail()"></div>
+
+<!-- ══ PREVIEW MODAL ════════════════════════════════════════════════════════ -->
+<div id="preview-modal" onclick="closePreview()">
+  <div id="preview-box" onclick="event.stopPropagation()">
+    <div class="flex items-center justify-between px-6 py-4 border-b flex-shrink-0" style="border-color:var(--border)">
+      <span class="font-semibold text-sm truncate mr-4" id="preview-title" style="color:var(--text)"></span>
+      <div class="flex gap-2 flex-shrink-0">
+        <button onclick="copyPreview()" class="btn-ghost text-xs">Copy</button>
+        <button id="preview-dl-btn" class="btn-ghost text-xs gold">↓ Download</button>
+        <button onclick="closePreview()" class="btn-ghost text-xs px-3">✕</button>
+      </div>
+    </div>
+    <div id="preview-body" class="flex-1 overflow-y-auto p-8">
+      <div id="preview-content" class="prose text-sm"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TOAST ════════════════════════════════════════════════════════════════ -->
+<div id="toast"></div>
+
+<script>
+marked.setOptions({ breaks: true, gfm: true });
+
+// ── State ──────────────────────────────────────────────────────────────────────
+let currentPane = 'chat';
+let currentSessionId = null;
+let currentSessionName = 'Research Chat';
+let sessions = [];
+let genFilename = '';
+let genRaw = '';
+let jurData = [];
+let jurSortKey = '';
+let jurSortAsc = true;
+let scanInterval = null;
+let previewRaw = '';
+let previewFilename = '';
+let isStreaming = false;
+
+const FLAGS = {
+  'Nigeria':'🇳🇬','South Africa':'🇿🇦','Kenya':'🇰🇪','Ghana':'🇬🇭','Tanzania':'🇹🇿',
+  'Uganda':'🇺🇬','Botswana':'🇧🇼','Namibia':'🇳🇦','Zambia':'🇿🇲','Rwanda':'🇷🇼',
+  'Ethiopia':'🇪🇹','Zimbabwe':'🇿🇼',"Côte d'Ivoire":'🇨🇮','Egypt':'🇪🇬',
+  'Morocco':'🇲🇦','Senegal':'🇸🇳'
+};
+
+// ── Navigation ─────────────────────────────────────────────────────────────────
+function nav(pane) {
+  document.querySelectorAll('[id^="pane-"]').forEach(el => el.classList.add('hidden'));
+  document.querySelectorAll('[id^="nav-"]').forEach(el => el.classList.remove('active'));
+  document.getElementById('pane-' + pane).classList.remove('hidden');
+  document.getElementById('nav-' + pane)?.classList.add('active');
+  currentPane = pane;
+  if (pane === 'chat') loadSessionsList();
+  if (pane === 'kb') { loadKBStats(); loadRecentDocs(); }
+  if (pane === 'generate') loadOutputTypes();
+  if (pane === 'jurisdictions') loadJurisdictions();
+  if (pane === 'sources') { loadSources(); startScanPoll(); }
+  if (pane === 'outputs') loadOutputsList();
+}
+
+// ── Sessions ───────────────────────────────────────────────────────────────────
+async function loadSessionsList() {
+  try {
+    const data = await api('/api/sessions');
+    sessions = data.sessions || [];
+    renderSessionsList();
+  } catch(e) {}
+}
+
+function renderSessionsList() {
+  const el = document.getElementById('sessions-list');
+  if (!sessions.length) {
+    el.innerHTML = `<p class="text-xs px-3 py-2" style="color:var(--text3)">No conversations yet</p>`;
+    return;
+  }
+  el.innerHTML = sessions.map(s => `
+    <div class="session-item ${s.id === currentSessionId ? 'active' : ''}" onclick="loadSession(${s.id})">
+      <div class="session-name">${esc(s.name || 'New Chat')}</div>
+      <div class="session-meta">${relativeDate(s.updated_at)} · ${s.message_count} msg</div>
+      <button class="session-del" onclick="event.stopPropagation();deleteSessionById(${s.id})">✕</button>
+    </div>`).join('');
+}
+
+function relativeDate(iso) {
+  if (!iso) return '';
+  const d = new Date((iso.endsWith('Z') || iso.includes('+') ? iso : iso + 'Z'));
+  const diff = Date.now() - d.getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return mins + 'm ago';
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return hrs + 'h ago';
+  return Math.floor(hrs / 24) + 'd ago';
+}
+
+async function loadSession(sessionId) {
+  if (sessionId === currentSessionId) return;
+  currentSessionId = sessionId;
+  const session = sessions.find(s => s.id === sessionId);
+  setSessionMeta(session?.name || 'Chat', true);
+
+  const msgs = document.getElementById('chat-messages');
+  msgs.innerHTML = '';
+  try {
+    const data = await api(`/api/sessions/${sessionId}/messages`);
+    for (const m of data.messages) {
+      appendMsg(m.role === 'user' ? 'user' : 'agent', m.content);
+    }
+  } catch(e) {}
+
+  renderSessionsList();
+  document.getElementById('chat-scroll').scrollTop = 999999;
+}
+
+function newChat() {
+  currentSessionId = null;
+  setSessionMeta('Research Chat', false);
+  document.getElementById('chat-messages').innerHTML = '';
+  renderWelcome();
+  renderSessionsList();
+}
+
+function setSessionMeta(name, showControls) {
+  currentSessionName = name;
+  document.getElementById('chat-session-name').textContent = name;
+  document.getElementById('rename-btn').classList.toggle('hidden', !showControls);
+  document.getElementById('delete-btn').classList.toggle('hidden', !showControls);
+}
+
+async function deleteCurrentSession() {
+  if (!currentSessionId) return;
+  if (!confirm(`Delete "${currentSessionName}"?`)) return;
+  await deleteSessionById(currentSessionId);
+}
+
+async function deleteSessionById(sessionId) {
+  try {
+    await api(`/api/sessions/${sessionId}`, 'DELETE');
+    toast('Conversation deleted.', 'success');
+    if (sessionId === currentSessionId) {
+      newChat();
+    }
+    await loadSessionsList();
+  } catch(e) { toast('Delete failed.', 'error'); }
+}
+
+function startRename() {
+  const nameEl = document.getElementById('chat-session-name');
+  const orig = nameEl.textContent;
+  nameEl.contentEditable = 'true';
+  nameEl.focus();
+  // select all
+  const range = document.createRange();
+  range.selectNodeContents(nameEl);
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(range);
+
+  nameEl.onblur = () => commitRename(nameEl, orig);
+  nameEl.onkeydown = e => {
+    if (e.key === 'Enter') { e.preventDefault(); nameEl.blur(); }
+    if (e.key === 'Escape') { nameEl.textContent = orig; nameEl.blur(); }
+  };
+}
+
+async function commitRename(el, orig) {
+  el.contentEditable = 'false';
+  el.onblur = null; el.onkeydown = null;
+  const newName = el.textContent.trim() || orig;
+  el.textContent = newName;
+  if (newName !== orig && currentSessionId) {
+    try {
+      await api(`/api/sessions/${currentSessionId}`, 'PATCH', { name: newName });
+      currentSessionName = newName;
+      await loadSessionsList();
+      toast('Renamed.', 'success');
+    } catch(e) { el.textContent = orig; }
+  }
+}
+
+// ── Chat ───────────────────────────────────────────────────────────────────────
+function chatKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); }
+}
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 160) + 'px';
+}
+function useChip(el) {
+  document.getElementById('chat-input').value = el.textContent.trim();
+  sendChat();
+}
+
+async function sendChat() {
+  if (isStreaming) return;
+  const input = document.getElementById('chat-input');
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  appendMsg('user', msg);
+  input.value = '';
+  input.style.height = 'auto';
+
+  const btn = document.getElementById('send-btn');
+  btn.disabled = true;
+  isStreaming = true;
+
+  const { msgId, streamEl, statusEl } = appendStreamingMsg();
+  let accText = '';
+  let sseBuffer = '';
+
+  try {
+    const resp = await fetch('/api/chat/stream', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: msg, session_id: currentSessionId }),
+    });
+
+    if (!resp.ok) {
+      const err = await resp.json().catch(() => ({}));
+      statusEl.style.display = 'none';
+      streamEl.innerHTML = `<p style="color:var(--red)">Error: ${esc(err.detail || 'Request failed')}</p>`;
+      return;
+    }
+
+    const reader = resp.body.getReader();
+    const dec = new TextDecoder();
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      sseBuffer += dec.decode(value, { stream: true });
+      const lines = sseBuffer.split('\n');
+      sseBuffer = lines.pop();
+
+      for (const line of lines) {
+        if (!line.startsWith('data: ')) continue;
+        let data;
+        try { data = JSON.parse(line.slice(6)); } catch { continue; }
+
+        if (data.type === 'session_id') {
+          currentSessionId = data.session_id;
+        } else if (data.type === 'status') {
+          statusEl.style.display = 'flex';
+          statusEl.querySelector('.st-text').textContent = data.content;
+        } else if (data.type === 'text') {
+          statusEl.style.display = 'none';
+          accText += data.content;
+          streamEl.innerHTML = marked.parse(accText);
+          document.getElementById('chat-scroll').scrollTop = 999999;
+        } else if (data.type === 'done') {
+          statusEl.style.display = 'none';
+          currentSessionId = data.session_id;
+          const copyBtn = document.getElementById(msgId + '-copy');
+          if (copyBtn) copyBtn.style.opacity = '1';
+          await loadSessionsList();
+          if (currentSessionId) {
+            const s = sessions.find(x => x.id === currentSessionId);
+            if (s) setSessionMeta(s.name, true);
+          }
+          loadSidebarStats();
+        } else if (data.type === 'error') {
+          statusEl.style.display = 'none';
+          streamEl.innerHTML += `<p style="color:var(--red);margin-top:.5rem">⚠ ${esc(data.content)}</p>`;
+        }
+      }
+    }
+  } catch(err) {
+    statusEl.style.display = 'none';
+    streamEl.innerHTML = `<p style="color:var(--red)">Connection error: ${esc(err.message)}</p>`;
+  } finally {
+    btn.disabled = false;
+    isStreaming = false;
+  }
+}
+
+function appendMsg(role, text) {
+  const wrap = document.createElement('div');
+  wrap.className = 'msg-wrap msg-' + (role === 'user' ? 'user' : 'agent');
+  if (role === 'user') {
+    wrap.innerHTML = `<div class="bubble max-w-2xl ml-auto">
+      <div class="flex items-center gap-2 mb-2 justify-end">
+        <span class="text-xs font-semibold" style="color:var(--text2)">You</span>
+        <div class="w-5 h-5 rounded-md flex items-center justify-center text-xs font-bold" style="background:var(--border2);color:var(--text)">Y</div>
+      </div>
+      <p class="text-sm whitespace-pre-wrap" style="color:var(--text2)">${esc(text)}</p>
+    </div>`;
+  } else {
+    const id = 'msg-' + Date.now() + '-' + Math.random().toString(36).slice(2,6);
+    wrap.innerHTML = `<div class="bubble">
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-5 h-5 rounded-md flex items-center justify-center text-xs font-bold" style="background:var(--gold);color:#080d1a">A</div>
+          <span class="text-xs font-semibold gold">Africa Pension Watch Agent</span>
+        </div>
+        <button onclick="copyText('${id}')" class="btn-ghost text-xs px-2 py-0.5">Copy</button>
+      </div>
+      <div id="${id}" class="prose text-sm">${marked.parse(text)}</div>
+    </div>`;
+  }
+  document.getElementById('chat-messages').appendChild(wrap);
+  document.getElementById('chat-scroll').scrollTop = 999999;
+}
+
+function appendStreamingMsg() {
+  const msgId = 'msg-' + Date.now();
+  const wrap = document.createElement('div');
+  wrap.className = 'msg-wrap msg-agent';
+  wrap.innerHTML = `<div class="bubble">
+    <div class="flex items-center justify-between mb-3">
+      <div class="flex items-center gap-2">
+        <div class="w-5 h-5 rounded-md flex items-center justify-center text-xs font-bold" style="background:var(--gold);color:#080d1a">A</div>
+        <span class="text-xs font-semibold gold">Africa Pension Watch Agent</span>
+      </div>
+      <button id="${msgId}-copy" onclick="copyText('${msgId}')" class="btn-ghost text-xs px-2 py-0.5" style="opacity:.35">Copy</button>
+    </div>
+    <div class="stream-status" id="${msgId}-status">
+      <div class="spin" style="width:12px;height:12px;border-width:1.5px"></div>
+      <span class="st-text">Thinking…</span>
+    </div>
+    <div id="${msgId}" class="prose text-sm"></div>
+  </div>`;
+  document.getElementById('chat-messages').appendChild(wrap);
+  document.getElementById('chat-scroll').scrollTop = 999999;
+  return {
+    msgId,
+    streamEl: document.getElementById(msgId),
+    statusEl: document.getElementById(msgId + '-status'),
+  };
+}
+
+function renderWelcome() {
+  const wrap = document.createElement('div');
+  wrap.className = 'msg-wrap msg-agent';
+  wrap.innerHTML = `<div class="bubble">
+    <div class="flex items-center gap-2 mb-3">
+      <div class="w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold" style="background:var(--gold);color:#080d1a">A</div>
+      <span class="text-xs font-semibold gold">Africa Pension Watch Agent</span>
+    </div>
+    <div class="prose">
+      <p>Hello. I'm the Africa Pension Watch Research Intelligence Agent — your AI-powered research partner for African pension reform.</p>
+      <p>I have access to <strong>16 jurisdiction profiles</strong>, a live knowledge base, and the ability to search the web for current research and regulatory updates. I can compare pension systems, identify policy gaps, and generate publication-quality outputs.</p>
+    </div>
+    <div class="flex flex-wrap gap-2 mt-4">
+      <div class="chip" onclick="useChip(this)">Compare offshore investment limits across Africa</div>
+      <div class="chip" onclick="useChip(this)">Key pension reform priorities in West Africa 2025</div>
+      <div class="chip" onclick="useChip(this)">Draft a policy brief on informal sector pension inclusion</div>
+      <div class="chip" onclick="useChip(this)">What are the biggest governance failures in African pension funds?</div>
+      <div class="chip" onclick="useChip(this)">Generate article ideas for Africa Pension Watch</div>
+      <div class="chip" onclick="useChip(this)">Nigeria vs Ghana: pension system comparison</div>
+    </div>
+  </div>`;
+  document.getElementById('chat-messages').appendChild(wrap);
+}
+
+// ── Generate ───────────────────────────────────────────────────────────────────
+async function loadOutputTypes() {
+  try {
+    const data = await api('/api/output-types');
+    const sel = document.getElementById('gen-type');
+    if (sel) sel.innerHTML = data.output_types.map(t =>
+      `<option value="${t.id}">${t.label}</option>`).join('');
+  } catch(e) {}
+}
+
+function quickGen(type, topic, countries=[]) {
+  nav('generate');
+  setTimeout(() => {
+    document.getElementById('gen-type').value = type;
+    document.getElementById('gen-topic').value = topic;
+    document.getElementById('gen-countries').value = countries.join(', ');
+    generateOutput();
+  }, 60);
+}
+
+async function generateOutput() {
+  const topic = document.getElementById('gen-topic').value.trim();
+  if (!topic) { toast('Please enter a topic.', 'error'); return; }
+  const countriesRaw = document.getElementById('gen-countries').value.trim();
+  const countries = countriesRaw ? countriesRaw.split(',').map(c => c.trim()).filter(Boolean) : [];
+  const btn = document.getElementById('gen-btn');
+  const progressLabel = document.getElementById('gen-progress-label');
+  btn.disabled = true; btn.textContent = 'Generating…';
+  document.getElementById('gen-result').classList.add('hidden');
+  document.getElementById('gen-progress').classList.remove('hidden');
+  if (progressLabel) progressLabel.textContent = 'Connecting to Claude…';
+  const contentEl = document.getElementById('gen-content');
+  contentEl.innerHTML = '';
+  let accText = '';
+  let sseBuffer = '';
+  let firstChunk = true;
+  try {
+    const resp = await fetch('/api/generate/stream', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        output_type: document.getElementById('gen-type').value,
+        topic, countries,
+        audience: document.getElementById('gen-audience').value,
+        additional_context: document.getElementById('gen-context').value,
+        use_deep_model: document.getElementById('gen-deep').checked,
+      }),
+    });
+    if (!resp.ok) {
+      const err = await resp.json().catch(() => ({}));
+      toast('Generation failed: ' + (err.detail || 'Unknown error'), 'error');
+      return;
+    }
+    const reader = resp.body.getReader();
+    const dec = new TextDecoder();
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      sseBuffer += dec.decode(value, { stream: true });
+      const lines = sseBuffer.split('\n');
+      sseBuffer = lines.pop();
+      for (const line of lines) {
+        if (!line.startsWith('data: ')) continue;
+        let data;
+        try { data = JSON.parse(line.slice(6)); } catch { continue; }
+        if (data.type === 'text') {
+          if (firstChunk) {
+            firstChunk = false;
+            document.getElementById('gen-result').classList.remove('hidden');
+            if (progressLabel) progressLabel.textContent = 'Streaming…';
+          }
+          accText += data.content;
+          contentEl.innerHTML = marked.parse(accText);
+          contentEl.scrollTop = contentEl.scrollHeight;
+        } else if (data.type === 'done') {
+          genFilename = data.filename;
+          genRaw = data.content;
+          document.getElementById('gen-title').textContent = data.title;
+          document.getElementById('gen-model-badge').textContent = data.model_used;
+          contentEl.innerHTML = marked.parse(data.content);
+          loadOutputsList();
+          toast('Output generated and saved.', 'success');
+        } else if (data.type === 'error') {
+          toast('Generation failed: ' + data.content, 'error');
+          break;
+        }
+      }
+    }
+  } catch(err) {
+    toast('Generation failed: ' + err.message, 'error');
+  } finally {
+    document.getElementById('gen-progress').classList.add('hidden');
+    btn.disabled = false; btn.textContent = 'Generate Output';
+  }
+}
+
+function copyOutput() { navigator.clipboard.writeText(genRaw); toast('Copied.', 'success'); }
+function downloadOutput() { if (genFilename) window.open('/api/outputs/' + genFilename, '_blank'); }
+
+// ── Knowledge Base ─────────────────────────────────────────────────────────────
+async function loadKBStats() {
+  try {
+    const d = await api('/api/stats');
+    document.getElementById('sb-docs').textContent = d.total_documents;
+    document.getElementById('sb-scan').textContent =
+      'Last scan: ' + (d.last_scan === 'Never' ? 'never' : d.last_scan.substring(0,10));
+    document.getElementById('kb-total-label').textContent = d.total_documents + ' documents';
+    document.getElementById('kb-stats-row').innerHTML = [
+      { label: 'Total Documents', value: d.total_documents, gold: true },
+      { label: 'Jurisdictions', value: d.by_jurisdiction.length },
+      { label: 'Document Types', value: d.by_type.length },
+    ].map(c => `<div class="stat-card">
+      <div class="text-2xl font-bold ${c.gold ? 'gold' : ''}" style="${c.gold ? '' : 'color:var(--text)'}">${c.value}</div>
+      <div class="text-xs mt-1" style="color:var(--text2)">${c.label}</div>
+    </div>`).join('');
+  } catch(e) {}
+}
+
+async function searchKB() {
+  const q = document.getElementById('kb-q').value.trim();
+  if (!q) return;
+  try {
+    const data = await api('/api/search', 'POST', { query: q, limit: 10 });
+    const el = document.getElementById('kb-results');
+    if (!data.count) {
+      el.innerHTML = `<p class="text-xs" style="color:var(--text3)">No results. Scan sources to populate the knowledge base.</p>`;
+      return;
+    }
+    el.innerHTML = data.results.map(r => `
+      <div class="card" style="padding:12px;cursor:pointer" data-title="${esc(r.title)}" onclick="askAboutDoc(this.dataset.title)">
+        <p class="text-sm font-medium truncate" style="color:var(--text)">${esc(r.title)}</p>
+        <p class="text-xs mt-0.5" style="color:var(--text3)">${r.doc_type||''} · ${r.jurisdiction||''} · ${r.source_name||''}</p>
+        ${r.summary ? `<p class="text-xs mt-1 line-clamp-2" style="color:var(--text2)">${esc(r.summary)}</p>` : ''}
+        ${r.url ? `<a href="${r.url}" target="_blank" onclick="event.stopPropagation()" class="text-xs gold hover:underline mt-1 block truncate">↗ ${r.url}</a>` : ''}
+      </div>`).join('');
+  } catch(e) {}
+}
+
+function askAboutDoc(title) {
+  nav('chat');
+  document.getElementById('chat-input').value = `Tell me about this document and its key findings: "${title}"`;
+  sendChat();
+}
+
+async function ingestURL() {
+  const url = document.getElementById('ingest-url').value.trim();
+  const jur = document.getElementById('ingest-jur').value.trim() || 'global';
+  if (!url) return;
+  const msg = document.getElementById('ingest-msg');
+  msg.innerHTML = `<span class="spin" style="width:12px;height:12px;border-width:1.5px;vertical-align:middle"></span> Fetching…`;
+  try {
+    const data = await api('/api/ingest', 'POST', { url, jurisdiction: jur });
+    if (data.success) {
+      msg.innerHTML = `<span style="color:var(--green)">✓ Ingested:</span> ${esc(data.title)}`;
+      toast('Document ingested.', 'success');
+      loadKBStats(); loadRecentDocs();
+    } else {
+      msg.innerHTML = `<span style="color:var(--red)">Error: ${esc(data.error||'Failed')}</span>`;
+    }
+  } catch(err) { msg.innerHTML = `<span style="color:var(--red)">${esc(err.message)}</span>`; }
+}
+
+async function loadRecentDocs() {
+  try {
+    const data = await api('/api/recent?limit=20');
+    const el = document.getElementById('recent-docs');
+    if (!data.count) {
+      el.innerHTML = `<p class="text-sm" style="color:var(--text3)">No documents yet. Scan sources or ingest URLs to populate.</p>`;
+      return;
+    }
+    el.innerHTML = data.documents.map(d => `
+      <div class="flex items-center justify-between card" style="padding:10px 14px">
+        <div class="min-w-0">
+          <p class="text-sm truncate" style="color:var(--text)">${esc(d.title)}</p>
+          <p class="text-xs mt-0.5" style="color:var(--text3)">${d.doc_type||''} · ${d.jurisdiction||''} · ${d.date_added?.substring(0,10)||''}</p>
+        </div>
+        ${d.url ? `<a href="${d.url}" target="_blank" class="text-xs gold ml-3 flex-shrink-0">↗</a>` : ''}
+      </div>`).join('');
+  } catch(e) {}
+}
+
+// ── Jurisdictions ──────────────────────────────────────────────────────────────
+async function loadJurisdictions() {
+  try {
+    const region = document.getElementById('region-filter')?.value || '';
+    const data = await api('/api/jurisdictions' + (region ? '?region=' + encodeURIComponent(region) : ''));
+    jurData = data.jurisdictions;
+    renderJurTable(jurData);
+  } catch(e) { console.error('loadJurisdictions:', e); }
+}
+
+function filterJurisdictions() {
+  const q = document.getElementById('jur-search').value.toLowerCase();
+  renderJurTable(jurData.filter(j =>
+    j.country.toLowerCase().includes(q) ||
+    (j.region||'').toLowerCase().includes(q) ||
+    (j.system_type||'').toLowerCase().includes(q)
+  ));
+}
+
+function sortJur(key) {
+  if (jurSortKey === key) jurSortAsc = !jurSortAsc;
+  else { jurSortKey = key; jurSortAsc = true; }
+  const sorted = [...jurData].sort((a, b) => {
+    const va = a[key], vb = b[key];
+    if (va == null) return 1; if (vb == null) return -1;
+    return (va < vb ? -1 : va > vb ? 1 : 0) * (jurSortAsc ? 1 : -1);
+  });
+  renderJurTable(sorted);
+}
+
+function coveragePill(pct) {
+  if (pct == null) return '<span style="color:var(--text3)">—</span>';
+  const cls = pct >= 40 ? 'badge-green' : pct >= 20 ? 'badge-gold' : 'badge-red';
+  return `<span class="badge ${cls}">${pct}%</span>`;
+}
+function num(v, suffix='') { return v != null ? v + suffix : '<span style="color:var(--text3)">—</span>'; }
+
+function renderJurTable(data) {
+  document.getElementById('jur-tbody').innerHTML = data.map(j => `
+    <tr onclick="showJurisdiction('${j.country.replace(/'/g,"\\'")}')">
+      <td style="color:var(--text);font-weight:500">${FLAGS[j.country]||''} ${j.country}</td>
+      <td><span class="badge badge-gray">${j.region}</span></td>
+      <td style="color:var(--text2);font-size:.78rem">${j.system_type}</td>
+      <td class="text-right" style="color:var(--text2)">${num(j.estimated_aum_usd_bn)}</td>
+      <td class="text-right">${coveragePill(j.coverage_rate_pct)}</td>
+      <td class="text-right" style="color:var(--text2)">${num(j.offshore_limit_pct,'%')}</td>
+      <td class="text-right" style="color:var(--text3);font-size:.78rem">${j.legislation_year||'—'}</td>
+    </tr>`).join('');
+}
+
+async function showJurisdiction(country) {
+  const j = await api('/api/jurisdictions/' + encodeURIComponent(country));
+  document.getElementById('dp-title').textContent = (FLAGS[j.country]||'') + ' ' + j.country;
+
+  const metric = (label, value) => `<div class="stat-card" style="padding:12px">
+    <div class="text-xs" style="color:var(--text3)">${label}</div>
+    <div class="text-sm font-semibold mt-0.5" style="color:var(--text)">${value||'—'}</div>
+  </div>`;
+  const list = (title, items, color) => !items?.length ? '' : `
+    <div class="mb-3">
+      <div class="text-xs font-semibold uppercase tracking-wide mb-1.5" style="color:${color}">${title}</div>
+      <ul class="space-y-1">${items.map(i=>`<li class="text-xs" style="color:var(--text2)">• ${esc(i)}</li>`).join('')}</ul>
+    </div>`;
+
+  document.getElementById('dp-content').innerHTML = `
+    <div class="mb-1"><span class="badge badge-gray">${j.region}</span> <span class="badge badge-gray ml-1">${j.system_type}</span></div>
+    <p class="text-xs mt-2 mb-4" style="color:var(--text2)">${j.regulator||''}</p>
+    <div class="grid grid-cols-2 gap-2 mb-4">
+      ${metric('AUM', j.estimated_aum_usd_bn ? '$'+j.estimated_aum_usd_bn+'bn' : null)}
+      ${metric('Coverage', j.coverage_rate_pct ? j.coverage_rate_pct+'%' : null)}
+      ${metric('Offshore Limit', j.offshore_limit_pct != null ? j.offshore_limit_pct+'%' : null)}
+      ${metric('Contribution Rate', j.total_contribution_rate_pct ? j.total_contribution_rate_pct+'%' : null)}
+      ${metric('Retirement Age', j.retirement_age)}
+      ${metric('Law Year', j.legislation_year)}
+    </div>
+    <div class="mb-4 text-xs" style="color:var(--text2);line-height:1.6">${j.system_description||''}</div>
+    <div class="text-xs mb-3" style="color:var(--text3)"><strong style="color:var(--text2)">Legislation:</strong> ${j.primary_legislation||'—'}</div>
+    ${list('Key Strengths', j.key_strengths, '#22c55e')}
+    ${list('Key Challenges', j.key_challenges, '#ef4444')}
+    ${list('Recent Reforms', j.recent_reforms, 'var(--gold)')}
+    ${list('Pending Reforms', j.pending_reforms, '#3b82f6')}
+    ${j.comparison_notes ? `<div class="border-t mt-3 pt-3" style="border-color:var(--border)">
+      <div class="text-xs font-semibold uppercase tracking-wide mb-1.5" style="color:var(--text3)">APW Analysis</div>
+      <p class="text-xs" style="color:var(--text2);line-height:1.6">${esc(j.comparison_notes)}</p>
+    </div>` : ''}
+    ${j.regulator_url ? `<a href="${j.regulator_url}" target="_blank" class="gold text-xs hover:underline mt-3 block">↗ Visit ${j.regulator}</a>` : ''}
+    <div class="mt-4 pt-4 border-t" style="border-color:var(--border)">
+      <button onclick="quickGen('regulatory_summary','${j.country} pension regulatory framework',['${j.country}']);closeDetail()" class="btn-ghost text-xs w-full mb-2">Generate Regulatory Summary</button>
+      <button onclick="chatWithJur('${j.country}');closeDetail()" class="btn-ghost text-xs w-full">Ask Agent About ${j.country}</button>
+    </div>`;
+  openDetail();
+}
+
+function chatWithJur(country) {
+  nav('chat');
+  document.getElementById('chat-input').value =
+    `Give me a detailed analysis of ${country}'s pension system — strengths, weaknesses, key reform opportunities, and how it compares to regional peers.`;
+  sendChat();
+}
+
+// ── Sources ────────────────────────────────────────────────────────────────────
+async function loadSources() {
+  let data;
+  try { data = await api('/api/sources'); } catch(e) { return; }
+  const typeLabels = {
+    multilateral:'Multilateral Organizations',
+    regional_development_bank:'Regional Development Banks',
+    regulator:'Pension Regulators',
+    national_fund:'National Pension Funds',
+    development_finance:'Development Finance',
+    investment_manager:'Investment Managers',
+    international_body:'International Bodies',
+    consulting:'Research & Consulting',
+    professional_body:'Professional Bodies',
+  };
+  const grouped = {};
+  data.sources.forEach(s => { (grouped[s.type||'other'] = grouped[s.type||'other']||[]).push(s); });
+  document.getElementById('sources-list').innerHTML = Object.entries(grouped).map(([type, srcs]) => `
+    <div class="mb-6">
+      <p class="text-xs font-semibold uppercase tracking-wide mb-2" style="color:var(--text3)">${typeLabels[type]||type}</p>
+      <div class="space-y-1.5">
+        ${srcs.map(s => `
+          <div class="card flex items-center justify-between" style="padding:10px 14px">
+            <div class="min-w-0 mr-3">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-sm" style="color:var(--text)">${esc(s.name)}</span>
+                ${s.country ? `<span class="badge badge-gray">${s.country}</span>` : ''}
+                <span class="badge ${s.priority==='high'?'badge-gold':'badge-gray'}">${s.priority}</span>
+              </div>
+              <p class="text-xs mt-0.5 truncate" style="color:var(--text3)">${s.url}</p>
+            </div>
+            <div class="flex gap-2 flex-shrink-0">
+              <a href="${s.url}" target="_blank" class="btn-ghost text-xs px-2 py-1">↗</a>
+              <button onclick="triggerScan('${s.id}','')" class="btn-ghost text-xs px-2 py-1">Scan</button>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+function _setScanBtnsDisabled(val) {
+  document.getElementById('scan-all-btn').disabled = val;
+  const hb = document.getElementById('scan-high-btn');
+  if (hb) hb.disabled = val;
+}
+
+async function triggerScan(sourceId, priority) {
+  _setScanBtnsDisabled(true);
+  document.getElementById('scan-badge').textContent = '⟳ Scan started…';
+  document.getElementById('scan-progress').classList.remove('hidden');
+  const fill = document.getElementById('scan-progress-fill');
+  const label = document.getElementById('scan-progress-label');
+  if (fill) fill.style.width = '0%';
+  if (label) label.textContent = 'Starting scan…';
+  try {
+    await api('/api/scan', 'POST', { source_id: sourceId, priority });
+  } catch(e) {
+    toast('Scan failed to start: ' + e.message, 'error');
+    document.getElementById('scan-progress').classList.add('hidden');
+    _setScanBtnsDisabled(false);
+    return;
+  }
+  startScanPoll();
+}
+
+function startScanPoll() {
+  if (scanInterval) clearInterval(scanInterval);
+  scanInterval = setInterval(async () => {
+    const d = await api('/api/scan/status').catch(() => null);
+    if (!d) return;
+    if (d.running) {
+      const pct = d.total > 0 ? Math.round((d.completed / d.total) * 100) : 0;
+      const fill = document.getElementById('scan-progress-fill');
+      const label = document.getElementById('scan-progress-label');
+      if (fill) fill.style.width = pct + '%';
+      if (label) label.textContent = d.total > 0
+        ? `Scanning ${d.completed}/${d.total} sources${d.current ? ' — ' + d.current : ''}…`
+        : 'Starting scan…';
+    } else {
+      clearInterval(scanInterval); scanInterval = null;
+      document.getElementById('scan-progress').classList.add('hidden');
+      _setScanBtnsDisabled(false);
+      if (d.last_result) {
+        document.getElementById('scan-badge').textContent =
+          `✓ ${d.last_result.documents_found} docs · ${d.last_result.completed_at?.substring(0,16)||''}`;
+        toast(`Scan complete — ${d.last_result.documents_found} documents ingested.`, 'success');
+        loadSidebarStats();
+      } else if (d.completed === 0 && !d.running) {
+        document.getElementById('scan-badge').textContent = '';
+      }
+    }
+  }, 1500);
+}
+
+// ── Outputs ────────────────────────────────────────────────────────────────────
+async function loadOutputsList() {
+  let data;
+  try { data = await api('/api/outputs'); } catch(e) { return; }
+  const el = document.getElementById('outputs-list');
+  if (!data.outputs.length) {
+    el.innerHTML = `<p class="text-sm" style="color:var(--text3)">No outputs yet. Use the Generate tab to create policy briefs, articles, and reports.</p>`;
+    return;
+  }
+  el.innerHTML = data.outputs.map(o => `
+    <div class="card flex items-center justify-between mb-2" style="padding:12px 16px">
+      <div class="min-w-0 mr-3">
+        <p class="text-sm truncate" style="color:var(--text)">${esc(o.name.replace(/_/g,' ').replace('.md',''))}</p>
+        <p class="text-xs mt-0.5" style="color:var(--text3)">${o.created} · ${o.size_kb} KB</p>
+      </div>
+      <div class="flex gap-2 flex-shrink-0">
+        <button onclick="previewOutput('${o.name}')" class="btn-ghost text-xs px-3 py-1">Preview</button>
+        <a href="/api/outputs/${o.name}" target="_blank" class="btn-ghost text-xs px-3 py-1">↓</a>
+      </div>
+    </div>`).join('');
+}
+
+async function previewOutput(filename) {
+  try {
+    const data = await api(`/api/outputs/${filename}/content`);
+    previewFilename = filename;
+    previewRaw = data.content;
+    document.getElementById('preview-title').textContent =
+      filename.replace(/_/g,' ').replace('.md','');
+    document.getElementById('preview-content').innerHTML = marked.parse(data.content);
+    document.getElementById('preview-dl-btn').onclick = () =>
+      window.open('/api/outputs/' + filename, '_blank');
+    document.getElementById('preview-modal').classList.add('open');
+  } catch(e) { toast('Could not load preview.', 'error'); }
+}
+
+function copyPreview() {
+  navigator.clipboard.writeText(previewRaw);
+  toast('Copied to clipboard.', 'success');
+}
+function closePreview() {
+  document.getElementById('preview-modal').classList.remove('open');
+}
+
+// ── Detail panel ───────────────────────────────────────────────────────────────
+function openDetail() {
+  document.getElementById('detail-panel').classList.add('open');
+  document.getElementById('detail-overlay').classList.remove('hidden');
+}
+function closeDetail() {
+  document.getElementById('detail-panel').classList.remove('open');
+  document.getElementById('detail-overlay').classList.add('hidden');
+}
+
+// ── Toast ──────────────────────────────────────────────────────────────────────
+function toast(msg, type='') {
+  const el = document.createElement('div');
+  el.className = 'toast-msg ' + type;
+  el.textContent = msg;
+  document.getElementById('toast').appendChild(el);
+  setTimeout(() => el.remove(), 4000);
+}
+
+// ── Utilities ──────────────────────────────────────────────────────────────────
+function esc(s) {
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function copyText(id) {
+  const el = document.getElementById(id);
+  if (el) { navigator.clipboard.writeText(el.innerText); toast('Copied.', 'success'); }
+}
+
+async function api(path, method='GET', body=null) {
+  const opts = { method, headers: { 'Content-Type': 'application/json' } };
+  if (body) opts.body = JSON.stringify(body);
+  const res = await fetch(path, opts);
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.detail || JSON.stringify(data));
+  return data;
+}
+
+async function loadSidebarStats() {
+  try {
+    const [stats, status] = await Promise.all([api('/api/stats'), api('/api/status')]);
+    document.getElementById('sb-docs').textContent = stats.total_documents;
+    document.getElementById('sb-scan').textContent =
+      'Last scan: ' + (stats.last_scan === 'Never' ? 'never' : stats.last_scan.substring(0,10));
+
+    const anEl = document.getElementById('st-anthropic');
+    anEl.textContent = status.anthropic ? '● Connected' : '✕ Missing key';
+    anEl.className = 'badge ' + (status.anthropic ? 'badge-green' : 'badge-red');
+
+    const tvEl = document.getElementById('st-tavily');
+    tvEl.textContent = status.tavily ? '● Connected' : '○ Not set';
+    tvEl.className = 'badge ' + (status.tavily ? 'badge-green' : 'badge-gray');
+
+    const modelEl = document.getElementById('chat-model-label');
+    if (modelEl) modelEl.textContent = status.model || '';
+
+    if (!status.anthropic) toast('ANTHROPIC_API_KEY not set — add it to your .env file.', 'error');
+  } catch(e) {}
+}
+
+// ── Init ───────────────────────────────────────────────────────────────────────
+(async () => {
+  await loadSidebarStats();
+  await loadOutputTypes();
+  renderWelcome();
+  await loadSessionsList();
+})();
+</script>
+</body>
+</html>
