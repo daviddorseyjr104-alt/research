@@ -37,10 +37,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+config.OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
+
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.mount("/outputs", StaticFiles(directory=str(config.OUTPUTS_DIR)), name="outputs")
-
-config.OUTPUTS_DIR.mkdir(exist_ok=True)
 
 _agents: dict[int, Agent] = {}          # session_id → Agent instance
 _scan_status = {"running": False, "last_result": None, "completed": 0, "total": 0, "current": ""}
