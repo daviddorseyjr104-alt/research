@@ -14,7 +14,7 @@ OUTPUTS_DIR = _persist / "outputs"
 DB_PATH = _persist / "apw_knowledge.db"
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
-MODEL = os.environ.get("APW_MODEL", "claude-sonnet-4-6")
+MODEL = os.environ.get("APW_MODEL", "claude-opus-4-8")
 DEEP_MODEL = os.environ.get("APW_DEEP_MODEL", "claude-opus-4-8")
 
 ORG_NAME = "Africa Pension Watch"
